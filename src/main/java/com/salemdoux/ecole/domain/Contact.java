@@ -1,13 +1,13 @@
 package com.salemdoux.ecole.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Contact implements Serializable {
@@ -23,9 +23,8 @@ public class Contact implements Serializable {
 	private String telefone;
 	
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy="adresse")
-	private Pessoa pessoa;
-
+	@OneToMany(mappedBy="contact")
+	private List<Pessoa> pessoas;
 
 
 	public Contact() {
@@ -38,17 +37,16 @@ public class Contact implements Serializable {
 		this.email = email;
 		this.telefone = telefone;
 	}
+
+
+	public List<Pessoa> getPessoas() {
+		return pessoas;
+	}
+
+	public void setPessoas(List<Pessoa> pessoas) {
+		this.pessoas = pessoas;
+	}
 	
-
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
-	}
-
-
 	public Integer getId() {
 		return id;
 	}

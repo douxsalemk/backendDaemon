@@ -1,13 +1,13 @@
 package com.salemdoux.ecole.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Adresse implements Serializable {
@@ -24,8 +24,9 @@ public class Adresse implements Serializable {
 	private String avenue;
 	private String reference;
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "adresse")
-	private Pessoa pessoa;
+	@OneToMany(mappedBy="adresse")
+	private List<Pessoa> pessoas;
+
 
 	public Adresse() {
 
@@ -99,15 +100,14 @@ public class Adresse implements Serializable {
 		this.reference = reference;
 	}
 
-
-
-	public Pessoa getPessoa() {
-		return pessoa;
+	public List<Pessoa> getPessoas() {
+		return pessoas;
 	}
 
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
+	public void setPessoas(List<Pessoa> pessoas) {
+		this.pessoas = pessoas;
 	}
+
 
 	@Override
 	public int hashCode() {

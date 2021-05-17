@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -33,12 +34,12 @@ public class Pessoa implements Serializable {
 
 	private Integer sexe;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "adresse_id")
 	@MapsId
 	private Adresse adresse;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name= "contact_id")
 	@MapsId
 	private Contact contact;
@@ -57,7 +58,7 @@ public class Pessoa implements Serializable {
 
 	}
 
-	public Pessoa(Integer id, String nom, String postNom, String preNom, Date dateDeNaissance, Adresse adresse, Contact contact) {
+	public Pessoa(Integer id, String nom, String postNom, String preNom, Date dateDeNaissance, Adresse adresse, Contact contact, Sexe sexe) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -66,6 +67,7 @@ public class Pessoa implements Serializable {
 		this.dateDeNaissance = dateDeNaissance;
 		this.adresse = adresse;
 		this.contact = contact;
+		this.sexe = sexe.getCod();
 	}
 
 	public Integer getId() {
