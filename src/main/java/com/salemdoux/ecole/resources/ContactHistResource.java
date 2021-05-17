@@ -7,21 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.salemdoux.ecole.domain.Fonction;
-import com.salemdoux.ecole.services.FonctionService;
+import com.salemdoux.ecole.domain.ContactHist ;
+import com.salemdoux.ecole.services.ContactHistService;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value="/fonctions")
-public class FonctionResource {
+@RequestMapping(value="/contacthist")
+public class ContactHistResource {
 	
 	@Autowired
-	private FonctionService service;
+	private ContactHistService service;
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	public ResponseEntity<?> buscar(@PathVariable Integer id) throws ObjectNotFoundException {
-		Fonction obj = service.buscar(id);		
+		ContactHist  obj = service.buscar(id);		
 		return ResponseEntity.ok().body(obj);
 	}
   
