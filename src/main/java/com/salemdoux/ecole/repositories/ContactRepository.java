@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.salemdoux.ecole.domain.Contact;
 
 @Repository
-public interface ContactRepository extends JpaRepository<Contact, Integer >{
+public interface ContactRepository extends JpaRepository<Contact, Integer>{
 
 }

@@ -13,7 +13,7 @@ import com.salemdoux.ecole.services.AdresseService;
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value="/adresses")
+@RequestMapping(value="/adresse")
 public class AdresseResource {
 	
 	@Autowired

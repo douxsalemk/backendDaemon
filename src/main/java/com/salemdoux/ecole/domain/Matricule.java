@@ -1,70 +1,89 @@
 package com.salemdoux.ecole.domain;
 
 import java.io.Serializable;
-import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Matricule implements Serializable{
+public class Matricule implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private Number matricule;
 
-	@OneToMany(mappedBy="matricule")
-	private List<Admistration> admistrations;
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "matricule")
+	@MapsId
+	private Ecole ecole;
+
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "matricule")
+	@MapsId
+	private Admistration admistrateur;
+
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "matricule")
+	@MapsId
+	private Eleve eleve;
 	
-	@OneToMany(mappedBy="matricule")
-	private List<Employe> employes;
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "matricule")
+	@MapsId
+	private Employe employe;
+
+	@OneToOne
+	@MapsId
+	private Actif actif;
 	
-	@OneToMany(mappedBy="matricule")
-	private List<Eleve> eleves;
-
-	
-	public List<Admistration> getAdmistrations() {
-		return admistrations;
+	public Ecole getEcole() {
+		return ecole;
 	}
 
-
-	public void setAdmistrations(List<Admistration> admistrations) {
-		this.admistrations = admistrations;
+	public void setEcole(Ecole ecole) {
+		this.ecole = ecole;
 	}
 
-
-	public List<Employe> getEmployers() {
-		return employes;
+	public Admistration getAdmistrateur() {
+		return admistrateur;
 	}
 
-
-	public void setEmployers(List<Employe> employes) {
-		this.employes = employes;
+	public void setAdmistrateur(Admistration admistrateur) {
+		this.admistrateur = admistrateur;
 	}
 
-
-	public List<Eleve> getEleves() {
-		return eleves;
+	public Eleve getEleve() {
+		return eleve;
 	}
 
+	public void setEleve(Eleve eleve) {
+		this.eleve = eleve;
+	}
 
-	public void setEleves(List<Eleve> eleves) {
-		this.eleves = eleves;
+	public Employe getEmploye() {
+		return employe;
+	}
+
+	public void setEmploye(Employe employe) {
+		this.employe = employe;
 	}
 
 
 	public Matricule() {
-		
+
 	}
-	
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -105,6 +124,5 @@ public class Matricule implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
+
 }

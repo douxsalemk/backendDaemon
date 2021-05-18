@@ -20,14 +20,9 @@ public class Actif implements Serializable {
 	
 	private Boolean actif;
 	
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "actif")
-	private Admistration admistration;
-
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "actif")
-	private Eleve eleve;
 	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "actif")
-	private Employe employe;
+	private Matricule matricule;
 	
 	public Actif() {
 		

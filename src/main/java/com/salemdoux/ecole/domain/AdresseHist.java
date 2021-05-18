@@ -1,15 +1,11 @@
 package com.salemdoux.ecole.domain;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class AdresseHist implements Serializable {
@@ -20,13 +16,13 @@ public class AdresseHist implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "adresseHistoric")
-	private Pessoa pessoa;
-	
-
-	@OneToMany
-	private List<Adresse> adresseHistoric;
-
+	/*
+	 * @OneToOne(cascade = CascadeType.ALL, mappedBy = "adresseHistoric") private
+	 * Pessoa pessoa;
+	 * 
+	 * 
+	 * @OneToMany private List<Adresse> adresseHistoric;
+	 */
 	public AdresseHist() {
 
 	}
@@ -39,23 +35,17 @@ public class AdresseHist implements Serializable {
 		this.id = id;
 	}
 
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
-	}
-
-	public List<Adresse> getAdresseHistoric() {
-		return adresseHistoric;
-	}
-
-	public void setAdresseHistoric(List<Adresse> adresseHistoric) {
-		this.adresseHistoric = adresseHistoric;
-	}
-
-
+	/*
+	 * public Pessoa getPessoa() { return pessoa; }
+	 * 
+	 * public void setPessoa(Pessoa pessoa) { this.pessoa = pessoa; }
+	 * 
+	 * public List<Adresse> getAdresseHistoric() { return adresseHistoric; }
+	 * 
+	 * public void setAdresseHistoric(List<Adresse> adresseHistoric) {
+	 * this.adresseHistoric = adresseHistoric; }
+	 * 
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;

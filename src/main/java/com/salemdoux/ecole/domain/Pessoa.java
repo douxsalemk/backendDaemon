@@ -9,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -36,29 +34,40 @@ public class Pessoa implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "adresse_id")
-	@MapsId
 	private Adresse adresse;
 
 	@ManyToOne
-	@JoinColumn(name= "contact_id")
-	@MapsId
+	@JoinColumn(name = "contact_id")
 	private Contact contact;
 
-	@OneToOne
-	@JoinColumn(name = "adresseHistoric_id" )
-	@MapsId
-	private AdresseHist adresseHistoric;
-
-	@OneToOne
-	@JoinColumn(name = "contactHistoric_id")
-	@MapsId
-	private ContactHist contactHistoric;
-
+	/*
+	 * @OneToOne private Ecole ecole;
+	 * 
+	 * @OneToOne private Admistration admistrateur;
+	 * 
+	 * @OneToOne private Eleve eleve;
+	 * 
+	 * @OneToOne private Employe employe; */
+	  
+	  
+	  
+	 /*
+	 * 
+	 * @OneToOne
+	 * 
+	 * @JoinColumn(name = "adresseHistoric_id" ) private AdresseHist
+	 * adresseHistoric;
+	 * 
+	 * @OneToOne
+	 * 
+	 * @JoinColumn(name = "contactHistoric_id") private ContactHist contactHistoric;
+	 */
 	public Pessoa() {
 
 	}
 
-	public Pessoa(Integer id, String nom, String postNom, String preNom, Date dateDeNaissance, Adresse adresse, Contact contact, Sexe sexe) {
+	public Pessoa(Integer id, String nom, String postNom, String preNom, Date dateDeNaissance, Adresse adresse,
+			Contact contact, Sexe sexe) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -126,22 +135,17 @@ public class Pessoa implements Serializable {
 		this.contact = contact;
 	}
 
-	public AdresseHist getAdresseHistoric() {
-		return adresseHistoric;
-	}
-
-	public void setAdressHist(AdresseHist adresseHistoric) {
-		this.adresseHistoric = adresseHistoric;
-	}
-
-	public ContactHist getContactHistoric() {
-		return contactHistoric;
-	}
-
-	public void setContactHist(ContactHist contactHistoric) {
-		this.contactHistoric = contactHistoric;
-	}
-
+	/*
+	 * public AdresseHist getAdresseHistoric() { return adresseHistoric; }
+	 * 
+	 * public void setAdressHist(AdresseHist adresseHistoric) { this.adresseHistoric
+	 * = adresseHistoric; }
+	 * 
+	 * public ContactHist getContactHistoric() { return contactHistoric; }
+	 * 
+	 * public void setContactHist(ContactHist contactHistoric) {
+	 * this.contactHistoric = contactHistoric; }
+	 */
 	public Sexe getSexe() {
 		return Sexe.toEnum(sexe);
 	}

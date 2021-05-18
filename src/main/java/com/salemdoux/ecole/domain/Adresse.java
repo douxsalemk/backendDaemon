@@ -1,6 +1,7 @@
 package com.salemdoux.ecole.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Adresse implements Serializable {
@@ -24,14 +27,14 @@ public class Adresse implements Serializable {
 	private String avenue;
 	private String reference;
 
-	@OneToMany(mappedBy="adresse")
-	private List<Pessoa> pessoas;
-
+	@JsonIgnore
+	@OneToMany(mappedBy = "adresse")
+	private List<Pessoa> pessoas = new ArrayList<>();
 
 	public Adresse() {
 
 	}
-	
+
 	public Adresse(Integer id, String province, String ville, String comune, String quartier, String avenue,
 			String reference) {
 		super();
@@ -107,7 +110,6 @@ public class Adresse implements Serializable {
 	public void setPessoas(List<Pessoa> pessoas) {
 		this.pessoas = pessoas;
 	}
-
 
 	@Override
 	public int hashCode() {

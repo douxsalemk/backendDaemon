@@ -8,52 +8,48 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
-@Entity
-public class Eleve implements Serializable  {
-	
-	
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
-	
-	@ManyToOne
-	@JoinColumn(name="pessoa_id")
-	private Pessoa identidade;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-	
+@Entity
+public class Eleve implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	// @OneToOne
+	// private Pessoa pessoa;
+
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="matricule_id")
-	private Matricule matricule;
+	@JoinColumn(name = "ecole_id")
+	private Ecole ecole;
 
 	@OneToOne
-	@MapsId
-	private Actif actif;
-	
-	
-	@ManyToOne
-	@JoinColumn(name="ecole_id")
-	private Ecole ecole;
-	
-	
+	private Matricule matricule;
+
+	public Eleve() {
+
+	}
+
+	public Eleve(Integer id, Ecole ecole, Matricule matricule) {
+		super();
+		this.id = id;
+		this.ecole = ecole;
+		this.matricule = matricule;
+				
+	}
+
 	public Ecole getEcole() {
 		return ecole;
 	}
 
 	public void setEcole(Ecole ecole) {
 		this.ecole = ecole;
-	}
-
-	public Pessoa getIdentite() {
-		return identidade;
-	}
-
-	public void setIdentite(Pessoa identidade) {
-		this.identidade = identidade;
 	}
 
 	public Matricule getMatricule() {
@@ -64,25 +60,8 @@ public class Eleve implements Serializable  {
 		this.matricule = matricule;
 	}
 
-	public Actif getActif() {
-		return actif;
-	}
-
-	public void setActif(Actif actif) {
-		this.actif = actif;
-	}
-
 	public Integer getId() {
 		return id;
-	}
-	
-	public Eleve() {
-		
-	}
-	
-	public Eleve(Integer id) {
-		super();
-		this.id = id;
 	}
 
 	public void setId(Integer id) {
@@ -113,7 +92,5 @@ public class Eleve implements Serializable  {
 			return false;
 		return true;
 	}
-	
-	
 
 }

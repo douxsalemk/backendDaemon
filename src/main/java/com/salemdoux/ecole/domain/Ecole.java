@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Ecole implements Serializable {
@@ -20,6 +21,11 @@ public class Ecole implements Serializable {
 	
 	private String ecole;
 
+	
+	//@OneToOne
+	//private Pessoa pessoa;
+	
+	
 	@OneToMany(mappedBy="ecole")
 	private List<Admistration> admistrateurs;
 	
@@ -32,6 +38,38 @@ public class Ecole implements Serializable {
 	@OneToMany
 	private List<Contact> contacts;
 	
+	@OneToOne
+	private Matricule matricule;
+	
+	
+	public Ecole() {
+		
+	}
+
+	public Ecole(Integer id, String ecole, Matricule matricule) {
+		super();
+		this.id = id;
+		this.ecole = ecole;
+		this.matricule = matricule;
+	}
+	
+	
+	public List<Employe> getEmployes() {
+		return employes;
+	}
+
+	public void setEmployes(List<Employe> employes) {
+		this.employes = employes;
+	}
+
+	public Matricule getMatricule() {
+		return matricule;
+	}
+
+	public void setMatricule(Matricule matricule) {
+		this.matricule = matricule;
+	}
+
 	public List<Admistration> getAdmistrateurs() {
 		return admistrateurs;
 	}
@@ -64,15 +102,7 @@ public class Ecole implements Serializable {
 		this.contacts = contacts;
 	}
 
-	public Ecole() {
-		
-	}
 	
-	public Ecole(Integer id, String ecole) {
-		super();
-		this.id = id;
-		this.ecole = ecole;
-	}
 
 
 	public Integer getId() {

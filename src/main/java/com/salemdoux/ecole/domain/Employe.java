@@ -8,8 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Employe implements Serializable  {
@@ -20,26 +21,36 @@ public class Employe implements Serializable  {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
-	@ManyToOne
-	@JoinColumn(name="pessoa_id")
-	private Pessoa identidade;
-
 	
-	@ManyToOne
-	@JoinColumn(name="matricule_id")
-	private Matricule matricule;
-
-	@OneToOne
-	@MapsId
-	private Actif actif;
+	//@OneToOne
+	//private Pessoa pessoa;
 	
-	@ManyToOne
-	@JoinColumn(name="fonction_id")
-	private Fonction fonction;
-
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="ecole_id")
 	private Ecole ecole;
+	
+	
+	@OneToOne
+	private Matricule matricule;
+		
+
+	@OneToOne
+	private Fonction fonction;
+
+
+	public Employe() {
+		
+	}
+	
+	public Employe(Integer id, Ecole ecole, Matricule matricule, Fonction fonction) {
+		super();
+		this.id = id;
+		this.ecole = ecole;
+		this.matricule = matricule;
+		this.fonction = fonction;
+	}
+
 	
 	public Ecole getEcole() {
 		return ecole;
@@ -57,17 +68,6 @@ public class Employe implements Serializable  {
 		this.fonction = fonction;
 	}
 
-	public Employe() {
-		
-	}
-	
-	public Pessoa getIdentite() {
-		return identidade;
-	}
-
-	public void setIdentite(Pessoa identidade) {
-		this.identidade = identidade;
-	}
 
 	public Matricule getMatricule() {
 		return matricule;
@@ -77,18 +77,6 @@ public class Employe implements Serializable  {
 		this.matricule = matricule;
 	}
 
-	public Actif getActif() {
-		return actif;
-	}
-
-	public void setActif(Actif actif) {
-		this.actif = actif;
-	}
-
-	public Employe(Integer id) {
-		super();
-		this.id = id;
-	}
 
 
 
