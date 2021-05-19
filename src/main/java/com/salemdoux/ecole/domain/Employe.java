@@ -34,7 +34,7 @@ public class Employe implements Serializable  {
 	@OneToOne
 	private Matricule matricule;
 		
-
+	@JoinColumn(name="fonction_id")
 	@OneToOne
 	private Fonction fonction;
 

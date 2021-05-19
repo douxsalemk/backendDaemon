@@ -7,21 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.salemdoux.ecole.domain.Pessoa;
-import com.salemdoux.ecole.services.PessoaService;
+import com.salemdoux.ecole.domain.Eleve;
+import com.salemdoux.ecole.services.EleveService;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value="/eleves")
+@RequestMapping(value="/eleve")
 public class EleveResource {
 	
 	@Autowired
-	private PessoaService service;
+	private EleveService service;
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	public ResponseEntity<?> buscar(@PathVariable Integer id) throws ObjectNotFoundException {
-		Pessoa obj = service.buscar(id);		
+		Eleve obj = service.buscar(id);		
 		return ResponseEntity.ok().body(obj);
 	}
   

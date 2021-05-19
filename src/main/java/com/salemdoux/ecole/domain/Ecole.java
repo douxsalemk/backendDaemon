@@ -35,7 +35,7 @@ public class Ecole implements Serializable {
 	@OneToMany(mappedBy="ecole")
 	private List<Eleve> eleves;
 	
-	@OneToMany
+	@OneToMany(mappedBy="ecole")
 	private List<Contact> contacts;
 	
 	@OneToOne
@@ -53,6 +53,22 @@ public class Ecole implements Serializable {
 		this.matricule = matricule;
 	}
 	
+	
+	public Integer getId() {
+		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	public String getEcole() {
+		return ecole;
+	}
+	
+	public void setEcole(String ecole) {
+		this.ecole = ecole;
+	}
 	
 	public List<Employe> getEmployes() {
 		return employes;
@@ -104,22 +120,6 @@ public class Ecole implements Serializable {
 
 	
 
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getEcole() {
-		return ecole;
-	}
-
-	public void setEcole(String ecole) {
-		this.ecole = ecole;
-	}
 
 	@Override
 	public int hashCode() {

@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Actif implements Serializable {
 	
@@ -20,7 +22,7 @@ public class Actif implements Serializable {
 	
 	private Boolean actif;
 	
-	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "actif")
 	private Matricule matricule;
 	

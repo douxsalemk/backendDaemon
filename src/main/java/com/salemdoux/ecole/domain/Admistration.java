@@ -21,10 +21,6 @@ public class Admistration implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	public Integer getId() {
-		return id;
-	}
-
 	// @OneToOne
 	// private Pessoa pessoa;
 
@@ -47,6 +43,14 @@ public class Admistration implements Serializable {
 		this.matricule = matricule;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public Ecole getEcole() {
 		return ecole;
 	}
@@ -62,10 +66,7 @@ public class Admistration implements Serializable {
 	public void setMatricule(Matricule matricule) {
 		this.matricule = matricule;
 	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	
 
 	@Override
 	public int hashCode() {

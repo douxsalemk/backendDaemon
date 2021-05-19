@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,32 +20,39 @@ public class Matricule implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	private Number matricule;
+	private Number numero;
 
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "matricule")
-	@MapsId
 	private Ecole ecole;
 
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "matricule")
-	@MapsId
 	private Admistration admistrateur;
 
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "matricule")
-	@MapsId
 	private Eleve eleve;
 	
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "matricule")
-	@MapsId
 	private Employe employe;
 
 	@OneToOne
-	@MapsId
 	private Actif actif;
 	
+	public Matricule() {
+		
+	}
+	
+	public Matricule(Integer id, Number numero, Actif actif) {
+		super();
+		this.id = id;
+		this.numero = numero;
+		this.actif = actif;
+	}
+	
+
 	public Ecole getEcole() {
 		return ecole;
 	}
@@ -54,7 +60,6 @@ public class Matricule implements Serializable {
 	public void setEcole(Ecole ecole) {
 		this.ecole = ecole;
 	}
-
 	public Admistration getAdmistrateur() {
 		return admistrateur;
 	}
@@ -80,12 +85,17 @@ public class Matricule implements Serializable {
 	}
 
 
-	public Matricule() {
-
-	}
 
 	public Integer getId() {
 		return id;
+	}
+
+	public Actif getActif() {
+		return actif;
+	}
+
+	public void setActif(Actif actif) {
+		this.actif = actif;
 	}
 
 	public void setId(Integer id) {
@@ -93,11 +103,11 @@ public class Matricule implements Serializable {
 	}
 
 	public Number getMatricule() {
-		return matricule;
+		return numero;
 	}
 
-	public void setMatricule(Number matricule) {
-		this.matricule = matricule;
+	public void setMatricule(Number numero) {
+		this.numero = numero;
 	}
 
 	@Override

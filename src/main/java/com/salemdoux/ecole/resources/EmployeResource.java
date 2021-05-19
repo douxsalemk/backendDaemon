@@ -7,21 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.salemdoux.ecole.domain.Pessoa;
-import com.salemdoux.ecole.services.PessoaService;
+import com.salemdoux.ecole.domain.Employe;
+import com.salemdoux.ecole.services.EmployeService;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value="/employes")
+@RequestMapping(value="/employe")
 public class EmployeResource {
 	
 	@Autowired
-	private PessoaService service;
+	private EmployeService service;
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	public ResponseEntity<?> buscar(@PathVariable Integer id) throws ObjectNotFoundException {
-		Pessoa obj = service.buscar(id);		
+		Employe obj = service.buscar(id);		
 		return ResponseEntity.ok().body(obj);
 	}
   

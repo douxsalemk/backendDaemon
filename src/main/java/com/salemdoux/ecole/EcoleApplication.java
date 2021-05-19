@@ -8,20 +8,26 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.salemdoux.ecole.domain.Actif;
+import com.salemdoux.ecole.domain.Admistration;
 import com.salemdoux.ecole.domain.Adresse;
 import com.salemdoux.ecole.domain.Contact;
+import com.salemdoux.ecole.domain.Ecole;
+import com.salemdoux.ecole.domain.Eleve;
+import com.salemdoux.ecole.domain.Employe;
 import com.salemdoux.ecole.domain.Fonction;
+import com.salemdoux.ecole.domain.Matricule;
 import com.salemdoux.ecole.domain.Pessoa;
 import com.salemdoux.ecole.domain.enums.Sexe;
+import com.salemdoux.ecole.repositories.ActifRepository;
 import com.salemdoux.ecole.repositories.AdmistrationRepository;
-import com.salemdoux.ecole.repositories.AdresseHistRepository;
 import com.salemdoux.ecole.repositories.AdresseRepository;
-import com.salemdoux.ecole.repositories.ContactHistRepository;
 import com.salemdoux.ecole.repositories.ContactRepository;
 import com.salemdoux.ecole.repositories.EcoleRepository;
 import com.salemdoux.ecole.repositories.EleveRepository;
 import com.salemdoux.ecole.repositories.EmployeRepository;
 import com.salemdoux.ecole.repositories.FonctionRepository;
+import com.salemdoux.ecole.repositories.MatriculeRepository;
 import com.salemdoux.ecole.repositories.PessoaRepository;
 
 @SpringBootApplication
@@ -42,12 +48,11 @@ public class EcoleApplication implements CommandLineRunner {
 	@Autowired
 	private ContactRepository contactRepository;
 
-	@Autowired
-	private ContactHistRepository conHistRepository;
-
-	@Autowired
-	private AdresseHistRepository adresseHistRepository;
-
+	/*
+	 * @Autowired private ContactHistRepository conHistRepository;
+	 * 
+	 * @Autowired private AdresseHistRepository adresseHistRepository;
+	 */
 	@Autowired
 	private EcoleRepository ecoleRepository;
 
@@ -57,6 +62,12 @@ public class EcoleApplication implements CommandLineRunner {
 	@Autowired
 	private EmployeRepository employeRepository;
 
+	@Autowired
+	private ActifRepository actifRepository;
+
+	@Autowired
+	private MatriculeRepository matriculeRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(EcoleApplication.class, args);
 	}
@@ -64,10 +75,10 @@ public class EcoleApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Fonction fonc1 = new Fonction(null, "Professeur");
-		Fonction fonc2 = new Fonction(null, "Surveillant");
+		// Fonction fonc1 = new Fonction(null, "Professeur");
+		// Fonction fonc2 = new Fonction(null, "Surveillant");
 
-		fonctionRepository.saveAll(Arrays.asList(fonc1, fonc2));
+		// fonctionRepository.saveAll(Arrays.asList(fonc1, fonc2));
 
 		Adresse a1 = new Adresse(null, "kinshasa", "Kinshasa", "Gombe", "Pont", "De la science", "n8");
 		Adresse a2 = new Adresse(null, "Matadi", "Kinbangu", "gege", "pepe", "De la science", "n9");
@@ -133,6 +144,82 @@ public class EcoleApplication implements CommandLineRunner {
 
 		pessoaRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12));
 
-	}
+		Actif ac1 = new Actif(null, true);
+		Matricule m1 = new Matricule(null, 1, ac1);
 
+		Actif ac2 = new Actif(null, true);
+		Matricule m2 = new Matricule(null, 2, ac2);
+
+		Actif ac3 = new Actif(null, true);
+		Matricule m3 = new Matricule(null, 3, ac3);
+
+		Actif ac4 = new Actif(null, true);
+		Matricule m4 = new Matricule(null, 4, ac4);
+
+		Actif ac5 = new Actif(null, true);
+		Matricule m5 = new Matricule(null, 5, ac5);
+
+		Actif ac6 = new Actif(null, true);
+		Matricule m6 = new Matricule(null, 6, ac6);
+
+		Actif ac7 = new Actif(null, true);
+		Matricule m7 = new Matricule(null, 7, ac7);
+
+		Actif ac8 = new Actif(null, true);
+		Matricule m8 = new Matricule(null, 8, ac8);
+
+		Actif ac9 = new Actif(null, true);
+		Matricule m9 = new Matricule(null, 9, ac9);
+
+		Actif ac10 = new Actif(null, true);
+		Matricule m10 = new Matricule(null, 10, ac10);
+
+		Actif ac11 = new Actif(null, true);
+		Matricule m11 = new Matricule(null, 11, ac11);
+
+		Actif ac12 = new Actif(null, true);
+		Matricule m12 = new Matricule(null, 12, ac12);
+
+		Actif ac13 = new Actif(null, true);
+		Matricule m13 = new Matricule(null, 13, ac13);
+
+		actifRepository.saveAll(Arrays.asList(ac1, ac2, ac3, ac4, ac5, ac6, ac7, ac8, ac9, ac10, ac11, ac12, ac13));
+		matriculeRepository.saveAll(Arrays.asList(m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13));
+
+		Ecole e1 = new Ecole(null, "G.S CORBANS", m1);
+
+
+		Admistration adm1 = new Admistration(null, e1, m2);
+		Admistration adm2 = new Admistration(null, e1, m3);
+
+
+		Eleve el1 = new Eleve(null, e1, m4);
+		Eleve el2 = new Eleve(null, e1, m5);
+		Eleve el3 = new Eleve(null, e1, m6);
+		Eleve el4 = new Eleve(null, e1, m7);
+		Eleve el5 = new Eleve(null, e1, m8);
+		Eleve el6 = new Eleve(null, e1, m9);
+		Eleve el7 = new Eleve(null, e1, m10);
+		Eleve el8 = new Eleve(null, e1, m11);
+
+		
+		Fonction f1 = new Fonction(null, "PROFESEUR");
+		Fonction f2 = new Fonction(null, "EDUCATRICE");
+
+
+		Employe em1 = new Employe(null, e1, m12, f1);
+		Employe em2 = new Employe(null, e1, m13, f2);
+
+		
+		e1.setAdmistrateurs(Arrays.asList(adm1, adm2));
+		e1.setEleves(Arrays.asList(el1, el2, el3, el4, el5, el6, el7, el8));
+		e1.setEmployers(Arrays.asList(em1, em2));
+		e1.setContacts(Arrays.asList(c1, c2));
+		
+		ecoleRepository.saveAll(Arrays.asList(e1));
+		admistrationRepository.saveAll(Arrays.asList(adm1, adm2));
+		eleveRepository.saveAll(Arrays.asList(el1, el2, el3, el4, el5, el6, el7, el8));
+		fonctionRepository.saveAll(Arrays.asList(f1, f2));
+		employeRepository.saveAll(Arrays.asList(em1, em2));
+	}
 }
