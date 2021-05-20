@@ -16,7 +16,7 @@ public class AdresseHistService {
 	@Autowired
 	private AdresseHistRepository repo;
 
-	public AdresseHist buscar(Integer id) throws ObjectNotFoundException {
+	public AdresseHist find(Integer id) throws ObjectNotFoundException {
 		Optional<AdresseHist> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + AdresseHist.class.getName()));

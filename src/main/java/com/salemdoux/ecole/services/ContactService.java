@@ -16,7 +16,7 @@ public class ContactService {
 	@Autowired
 	private ContactRepository repo;
 
-	public Contact buscar(Integer id) throws ObjectNotFoundException {
+	public Contact find(Integer id) throws ObjectNotFoundException {
 		Optional<Contact> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Contact.class.getName()));

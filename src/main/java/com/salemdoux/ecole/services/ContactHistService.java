@@ -16,7 +16,7 @@ public class ContactHistService {
 	@Autowired
 	private ContactHistRepository repo;
 
-	public ContactHist buscar(Integer id) throws ObjectNotFoundException {
+	public ContactHist find(Integer id) throws ObjectNotFoundException {
 		Optional<ContactHist> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + ContactHistService.class.getName()));

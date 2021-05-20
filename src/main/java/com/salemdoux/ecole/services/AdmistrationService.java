@@ -16,7 +16,7 @@ public class AdmistrationService {
 	@Autowired
 	private AdmistrationRepository repo;
 
-	public Admistration buscar(Integer id) throws ObjectNotFoundException {
+	public Admistration find(Integer id) throws ObjectNotFoundException {
 		Optional<Admistration> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Admistration.class.getName()));

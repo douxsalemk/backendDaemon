@@ -16,7 +16,7 @@ public class MatriculeService {
 	@Autowired
 	private MatriculeRepository repo;
 
-	public Matricule buscar(Integer id) throws ObjectNotFoundException {
+	public Matricule find(Integer id) throws ObjectNotFoundException {
 		Optional<Matricule> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Matricule.class.getName()));

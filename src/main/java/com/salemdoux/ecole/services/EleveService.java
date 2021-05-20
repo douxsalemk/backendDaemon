@@ -16,7 +16,7 @@ public class EleveService {
 	@Autowired
 	private EleveRepository repo;
 
-	public Eleve buscar(Integer id) throws ObjectNotFoundException {
+	public Eleve find(Integer id) throws ObjectNotFoundException {
 		Optional<Eleve> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Eleve.class.getName()));

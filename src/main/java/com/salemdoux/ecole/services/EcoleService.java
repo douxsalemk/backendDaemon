@@ -16,7 +16,7 @@ public class EcoleService {
 	@Autowired
 	private EcoleRepository repo;
 
-	public Ecole buscar(Integer id) throws ObjectNotFoundException {
+	public Ecole find(Integer id) throws ObjectNotFoundException {
 		Optional<Ecole> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + EcoleService.class.getName()));

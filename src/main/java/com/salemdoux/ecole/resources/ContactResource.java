@@ -20,8 +20,8 @@ public class ContactResource {
 	private ContactService service;
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
-	public ResponseEntity<?> buscar(@PathVariable Integer id) throws ObjectNotFoundException {
-		Contact obj = service.buscar(id);		
+	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
+		Contact obj = service.find(id);		
 		return ResponseEntity.ok().body(obj);
 	}
   

@@ -16,7 +16,7 @@ public class ActifService {
 	@Autowired
 	private ActifRepository repo;
 
-	public Actif buscar(Integer id) throws ObjectNotFoundException {
+	public Actif find(Integer id) throws ObjectNotFoundException {
 		Optional<Actif> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Actif.class.getName()));
