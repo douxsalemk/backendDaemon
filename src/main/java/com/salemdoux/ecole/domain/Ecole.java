@@ -1,6 +1,6 @@
 package com.salemdoux.ecole.domain;
 
-import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,72 +10,65 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.salemdoux.ecole.domain.enums.Sexe;
+
 @Entity
-public class Ecole implements Serializable {
+public class Ecole extends Pessoa {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String ecole;
 
-	
-	//@OneToOne
-	//private Pessoa pessoa;
-	
-	
-	@OneToMany(mappedBy="ecole")
-	private List<Admistration> admistrateurs;
-	
-	@OneToMany(mappedBy="ecole")
-	private List<Employe> employes;
-	
-	@OneToMany(mappedBy="ecole")
-	private List<Eleve> eleves;
-	
-	@OneToMany(mappedBy="ecole")
+	/*
+	 * @JsonIgnore
+	 * 
+	 * @OneToMany(mappedBy="ecole") private List<Admistration> admistrateurs;
+	 * 
+	 * @JsonIgnore
+	 * 
+	 * @OneToMany(mappedBy="ecole") private List<Employe> employes;
+	 * 
+	 * @JsonIgnore
+	 * 
+	 * @OneToMany(mappedBy="ecole") private List<Eleve> eleves;
+	 */
+	@OneToMany
 	private List<Contact> contacts;
-	
+
 	@OneToOne
 	private Matricule matricule;
-	
-	
+
 	public Ecole() {
-		
+
 	}
 
-	public Ecole(Integer id, String ecole, Matricule matricule) {
-		super();
+	public Ecole(Integer id, String nom, String postNom, String preNom, Date dateDeNaissance, Adresse adresse,
+			Contact contact, Sexe sexe, String ecole, Matricule matricule) {
+		super(id, nom, postNom, preNom, dateDeNaissance, adresse, contact, sexe);
 		this.id = id;
 		this.ecole = ecole;
 		this.matricule = matricule;
 	}
-	
-	
+
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getEcole() {
 		return ecole;
 	}
-	
+
 	public void setEcole(String ecole) {
 		this.ecole = ecole;
-	}
-	
-	public List<Employe> getEmployes() {
-		return employes;
-	}
-
-	public void setEmployes(List<Employe> employes) {
-		this.employes = employes;
 	}
 
 	public Matricule getMatricule() {
@@ -86,30 +79,26 @@ public class Ecole implements Serializable {
 		this.matricule = matricule;
 	}
 
-	public List<Admistration> getAdmistrateurs() {
-		return admistrateurs;
-	}
-
-	public void setAdmistrateurs(List<Admistration> admistrateurs) {
-		this.admistrateurs = admistrateurs;
-	}
-
-	public List<Employe> getEmployers() {
-		return employes;
-	}
-
-	public void setEmployers(List<Employe> employes) {
-		this.employes = employes;
-	}
-
-	public List<Eleve> getEleves() {
-		return eleves;
-	}
-
-	public void setEleves(List<Eleve> eleves) {
-		this.eleves = eleves;
-	}
-
+	/*
+	 * public List<Employe> getEmployes() { return employes; }
+	 * 
+	 * public void setEmployes(List<Employe> employes) { this.employes = employes; }
+	 * 
+	 * 
+	 * public List<Admistration> getAdmistrateurs() { return admistrateurs; }
+	 * 
+	 * public void setAdmistrateurs(List<Admistration> admistrateurs) {
+	 * this.admistrateurs = admistrateurs; }
+	 * 
+	 * public List<Employe> getEmployers() { return employes; }
+	 * 
+	 * public void setEmployers(List<Employe> employes) { this.employes = employes;
+	 * }
+	 * 
+	 * public List<Eleve> getEleves() { return eleves; }
+	 * 
+	 * public void setEleves(List<Eleve> eleves) { this.eleves = eleves; }
+	 */
 	public List<Contact> getContacts() {
 		return contacts;
 	}
@@ -117,9 +106,6 @@ public class Ecole implements Serializable {
 	public void setContacts(List<Contact> contacts) {
 		this.contacts = contacts;
 	}
-
-	
-
 
 	@Override
 	public int hashCode() {
@@ -145,6 +131,5 @@ public class Ecole implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+
 }

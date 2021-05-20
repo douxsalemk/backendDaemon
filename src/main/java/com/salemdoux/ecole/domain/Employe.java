@@ -1,6 +1,6 @@
 package com.salemdoux.ecole.domain;
 
-import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,19 +11,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.salemdoux.ecole.domain.enums.Sexe;
 
 @Entity
-public class Employe implements Serializable  {
+public class Employe extends Pessoa {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-
-	
-	//@OneToOne
-	//private Pessoa pessoa;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -43,8 +40,10 @@ public class Employe implements Serializable  {
 		
 	}
 	
-	public Employe(Integer id, Ecole ecole, Matricule matricule, Fonction fonction) {
-		super();
+	
+	public Employe(Integer id, String nom, String postNom, String preNom, Date dateDeNaissance, Adresse adresse,
+			Contact contact, Sexe sexe,  Ecole ecole, Matricule matricule, Fonction fonction) {
+		super(id, nom, postNom, preNom, dateDeNaissance, adresse, contact, sexe);
 		this.id = id;
 		this.ecole = ecole;
 		this.matricule = matricule;

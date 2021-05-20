@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,10 +28,10 @@ public class Contact implements Serializable {
 	@OneToMany(mappedBy = "contact")
 	private List<Pessoa> pessoas = new ArrayList<>();
 
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name = "ecole_id")
-	private Ecole ecole;
+
+	//@ManyToOne
+	//@JoinColumn(name = "ecole_id")
+	//private Ecole ecole;
 
 	public Contact() {
 
@@ -77,7 +75,7 @@ public class Contact implements Serializable {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-
+/*
 	public Ecole getEcole() {
 		return ecole;
 	}
@@ -85,7 +83,7 @@ public class Contact implements Serializable {
 	public void setEcole(Ecole ecole) {
 		this.ecole = ecole;
 	}
-
+*/
 	@Override
 	public int hashCode() {
 		final int prime = 31;
