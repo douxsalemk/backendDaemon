@@ -2,6 +2,10 @@ package com.salemdoux.ecole.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.salemdoux.ecole.domain.Adresse;
 
 public class AdresseDTO implements Serializable{
@@ -10,8 +14,15 @@ public class AdresseDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
+	
+	@NotEmpty(message = "a cidade não pode ser vazia")@NotEmpty(message = "a cidade não pode ser vazia")
+	@Length(min=5, max=80, message= "O tamanho deve ser entr 5 e 80 caracteres")
 	private String ville;
+	
+	@NotEmpty(message = "o bairro não pode ser vazio")
 	private String quartier;
+	
+	@NotEmpty(message = "a rua não pode ser vazia")
 	private String avenue;
 	
 	public AdresseDTO() {
