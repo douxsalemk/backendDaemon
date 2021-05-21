@@ -13,7 +13,7 @@ import com.salemdoux.ecole.services.EcoleService;
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value="/ecole")
+@RequestMapping(value="/ecoles")
 public class EcoleResource {
 	
 	@Autowired

@@ -13,7 +13,7 @@ import com.salemdoux.ecole.services.MatriculeService;
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value="/matricule")
+@RequestMapping(value="/matricules")
 public class MatriculeResource {
 	
 	@Autowired

@@ -13,7 +13,7 @@ import com.salemdoux.ecole.services.ActifService;
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value="/actif")
+@RequestMapping(value="/actifs")
 public class ActifResource {
 	
 	@Autowired

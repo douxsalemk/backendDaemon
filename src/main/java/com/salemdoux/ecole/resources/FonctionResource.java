@@ -13,7 +13,7 @@ import com.salemdoux.ecole.services.FonctionService;
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value="/fonction")
+@RequestMapping(value="/fonctions")
 public class FonctionResource {
 	
 	@Autowired

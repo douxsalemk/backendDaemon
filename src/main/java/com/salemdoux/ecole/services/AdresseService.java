@@ -1,5 +1,6 @@
 package com.salemdoux.ecole.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,10 @@ public class AdresseService {
 			throw new DataIntegrityException("Não é possível deletar um endereço relationado a uma pessoa");
 
 		}
+	}
+	
+	public List<Adresse> findAll(){
+		return repo.findAll();
 	}
 
 }

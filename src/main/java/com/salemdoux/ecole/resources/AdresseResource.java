@@ -1,6 +1,8 @@
 package com.salemdoux.ecole.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.salemdoux.ecole.domain.Adresse;
+import com.salemdoux.ecole.dto.AdresseDTO;
 import com.salemdoux.ecole.services.AdresseService;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value="/adresse")
+@RequestMapping(value="/adresses")
 public class AdresseResource {
 	
 	@Autowired
@@ -50,5 +53,11 @@ public class AdresseResource {
 		return ResponseEntity.noContent().build();
 	}
   
-	
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<AdresseDTO>> findAll() {
+		List<Adresse> list = service.findAll();
+		List<AdresseDTO> listDto = list.stream().map(obj -> new AdresseDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
+	}
+  
 }

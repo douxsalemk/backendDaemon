@@ -13,7 +13,7 @@ import com.salemdoux.ecole.services.ContactService;
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value="/contact")
+@RequestMapping(value="/contacts")
 public class ContactResource {
 	
 	@Autowired

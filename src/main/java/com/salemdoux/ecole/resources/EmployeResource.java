@@ -13,7 +13,7 @@ import com.salemdoux.ecole.services.EmployeService;
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value="/employe")
+@RequestMapping(value="/employes")
 public class EmployeResource {
 	
 	@Autowired
