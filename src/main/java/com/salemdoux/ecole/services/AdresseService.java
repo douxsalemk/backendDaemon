@@ -14,8 +14,7 @@ import com.salemdoux.ecole.domain.Adresse;
 import com.salemdoux.ecole.dto.AdresseDTO;
 import com.salemdoux.ecole.repositories.AdresseRepository;
 import com.salemdoux.ecole.services.exceptions.DataIntegrityException;
-
-import javassist.tools.rmi.ObjectNotFoundException;
+import com.salemdoux.ecole.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class AdresseService {
@@ -23,7 +22,7 @@ public class AdresseService {
 	@Autowired
 	private AdresseRepository repo;
 
-	public Adresse find(Integer id) throws ObjectNotFoundException {
+	public Adresse find(Integer id){
 		Optional<Adresse> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Adresse.class.getName()));
@@ -35,7 +34,7 @@ public class AdresseService {
 		return repo.save(obj);
 	}
 
-	public Adresse update(Adresse obj) throws ObjectNotFoundException {
+	public Adresse update(Adresse obj) {
 		Adresse newObj = find(obj.getId());
 		updateData(newObj, obj);
 		return repo.save(obj);
@@ -50,7 +49,7 @@ public class AdresseService {
 		newObj.setReference(obj.getReference());
 	}
 	
-	public void delete(Integer id) throws ObjectNotFoundException{
+	public void delete(Integer id){
 		find(id);
 		try {
 			repo.deleteById(id);

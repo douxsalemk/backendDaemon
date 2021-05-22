@@ -11,10 +11,10 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.salemdoux.ecole.domain.Contact;
+import com.salemdoux.ecole.dto.ContactDTO;
 import com.salemdoux.ecole.repositories.ContactRepository;
 import com.salemdoux.ecole.services.exceptions.DataIntegrityException;
-
-import javassist.tools.rmi.ObjectNotFoundException;
+import com.salemdoux.ecole.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class ContactService {
@@ -34,12 +34,18 @@ public class ContactService {
 		return repo.save(obj);
 	}
 
-	public Contact update(Contact obj) throws ObjectNotFoundException {
-		find(obj.getId());
+	public Contact update(Contact obj){
+		Contact newObj = find(obj.getId());
+		updateData(newObj, obj);
 		return repo.save(obj);
 	}
 
-	public void delete(Integer id) throws ObjectNotFoundException{
+	private void updateData(Contact newObj, Contact obj) {
+		newObj.setEmail(obj.getEmail());;
+		newObj.setTelefone(obj.getTelefone());;
+	}
+
+	public void delete(Integer id){
 		find(id);
 		try {
 			repo.deleteById(id);
@@ -58,5 +64,9 @@ public class ContactService {
 		return repo.findAll(pageRequest);
 	}
 
+	public Contact fromDTO(ContactDTO objDto) {
+		return new Contact(objDto.getId(), objDto.getEmail(), objDto.getTelefone());
+	}
+		
 	
 }

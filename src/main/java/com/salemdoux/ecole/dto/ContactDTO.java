@@ -19,6 +19,10 @@ public class ContactDTO implements Serializable{
 	private String telefone;
 
 
+	public ContactDTO() {
+		
+	}
+	
 	public ContactDTO(Contact obj) {
 		id = obj.getId();
 		email = obj.getEmail();
