@@ -14,27 +14,43 @@ public class AdresseDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
+
+	@NotEmpty(message = "prenchimento obrigatório")
+	@Length(min=3, max=80, message= "O tamanho deve ser entre 3 e 80 caracteres")
+	private String province;
+
+	@NotEmpty(message = "prenchimento obrigatório")
+	@Length(min=3, max=80, message= "O tamanho deve ser entre 3 e 80 caracteres")
+	private String comune;
 	
-	@NotEmpty(message = "a cidade não pode ser vazia")@NotEmpty(message = "a cidade não pode ser vazia")
-	@Length(min=5, max=80, message= "O tamanho deve ser entr 5 e 80 caracteres")
+	@NotEmpty(message = "prenchimento obrigatório")
+	@Length(min=3, max=80, message= "O tamanho deve ser entre 3 e 80 caracteres")
 	private String ville;
 	
-	@NotEmpty(message = "o bairro não pode ser vazio")
+	@NotEmpty(message = "prenchimento obrigatório")
 	private String quartier;
 	
-	@NotEmpty(message = "a rua não pode ser vazia")
+	@NotEmpty(message = "prenchimento obrigatório")
 	private String avenue;
 	
+	@NotEmpty(message = "prenchimento obrigatório")
+	@Length(max=80, message= "O tamanho deve ser menor que 80 caracteres")
+	private String reference;
+
 	public AdresseDTO() {
 		
 	}
 
 	public AdresseDTO(Adresse obj) {
 		id = obj.getId();
+		province = obj.getProvince();
 		ville = obj.getVille();
+		comune = obj.getComune();
 		quartier = obj.getQuartier();
 		avenue = obj.getAvenue();
+		reference = obj.getReference();
 	}
+	
 
 	public Integer getId() {
 		return id;
@@ -68,4 +84,28 @@ public class AdresseDTO implements Serializable{
 		this.avenue = avenue;
 	}
 	
+		
+	public String getProvince() {
+		return province;
+	}
+	
+	public void setProvince(String province) {
+		this.province = province;
+	}
+	
+	public String getComune() {
+		return comune;
+	}
+	
+	public void setComune(String comune) {
+		this.comune = comune;
+	}
+	
+	public String getReference() {
+		return reference;
+	}
+	
+	public void setReference(String reference) {
+		this.reference = reference;
+	}
 }

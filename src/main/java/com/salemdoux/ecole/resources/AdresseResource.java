@@ -1,6 +1,10 @@
 package com.salemdoux.ecole.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,7 +37,8 @@ public class AdresseResource {
 	}
   
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Adresse obj){
+	public ResponseEntity<Void> insert(@Valid @RequestBody AdresseDTO objDto){
+		Adresse obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id").buildAndExpand(obj.getId()).toUri();	
@@ -41,35 +46,35 @@ public class AdresseResource {
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Adresse obj, @PathVariable Integer id) throws ObjectNotFoundException{
+	public ResponseEntity<Void> update(@Valid @RequestBody AdresseDTO objDto, @PathVariable Integer id) throws ObjectNotFoundException{
+		Adresse obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-	public ResponseEntity<Object> delete(@PathVariable Integer id) throws ObjectNotFoundException{
+	public ResponseEntity<Void> delete(@PathVariable Integer id) throws ObjectNotFoundException{
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
   
-	
-	@RequestMapping(value="/page", method=RequestMethod.GET)
-	public ResponseEntity<Page<AdresseDTO>> findPage(
-			@RequestParam(value="page", defaultValue="0") Integer page, 
-			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
-			@RequestParam(value="orderBy", defaultValue="ville") String orderBy, 
-			@RequestParam(value="direction", defaultValue="ASC") String direction) {
-		Page<Adresse> list = service.findPage(page, linesPerPage, orderBy, direction);
-		Page<AdresseDTO> listDto = list.map(obj -> new AdresseDTO(obj));  
-		return ResponseEntity.ok().body(listDto);
-	}
-	/*	
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<AdresseDTO>> findAll() {
 		List<Adresse> list = service.findAll();
 		List<AdresseDTO> listDto = list.stream().map(obj -> new AdresseDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}
-  */
+	
+	@RequestMapping(value="/page", method=RequestMethod.GET)
+	public ResponseEntity<Page<AdresseDTO>> findPage(
+			@RequestParam(value="page", defaultValue="0") Integer page, 
+			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
+			@RequestParam(value="orderBy", defaultValue="province") String orderBy, 
+			@RequestParam(value="direction", defaultValue="ASC") String direction) {
+		Page<Adresse> list = service.findPage(page, linesPerPage, orderBy, direction);
+		Page<AdresseDTO> listDto = list.map(obj -> new AdresseDTO(obj));  
+		return ResponseEntity.ok().body(listDto);
+	}
+		
 }

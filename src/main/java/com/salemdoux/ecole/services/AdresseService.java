@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.salemdoux.ecole.domain.Adresse;
+import com.salemdoux.ecole.dto.AdresseDTO;
 import com.salemdoux.ecole.repositories.AdresseRepository;
 import com.salemdoux.ecole.services.exceptions.DataIntegrityException;
 
@@ -35,16 +36,26 @@ public class AdresseService {
 	}
 
 	public Adresse update(Adresse obj) throws ObjectNotFoundException {
-		find(obj.getId());
+		Adresse newObj = find(obj.getId());
+		updateData(newObj, obj);
 		return repo.save(obj);
 	}
 
+	private void updateData(Adresse newObj, Adresse obj) {
+		newObj.setProvince(obj.getProvince());;
+		newObj.setVille(obj.getVille());;
+		newObj.setComune(obj.getComune());
+		newObj.setQuartier(obj.getQuartier());
+		newObj.setAvenue(obj.getAvenue());
+		newObj.setReference(obj.getReference());
+	}
+	
 	public void delete(Integer id) throws ObjectNotFoundException{
 		find(id);
 		try {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível deletar um endereço relationado a uma pessoa");
+			throw new DataIntegrityException("Não é possível deletar um dado que possui relationamento com outros dados");
 
 		}
 	}
@@ -57,6 +68,11 @@ public class AdresseService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
+
+	public Adresse fromDTO(AdresseDTO objDto) {
+		return new Adresse(objDto.getId(), objDto.getProvince(), objDto.getVille(), objDto.getComune(), objDto.getQuartier(), objDto.getAvenue(), objDto.getReference());
+	}
+			
 
 	
 }

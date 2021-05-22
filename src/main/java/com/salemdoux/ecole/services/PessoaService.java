@@ -11,7 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.salemdoux.ecole.domain.Pessoa;
-import com.salemdoux.ecole.domain.Pessoa;
+import com.salemdoux.ecole.dto.PessoaDTO;
 import com.salemdoux.ecole.repositories.PessoaRepository;
 import com.salemdoux.ecole.services.exceptions.DataIntegrityException;
 
@@ -59,6 +59,9 @@ public class PessoaService {
 		return repo.findAll(pageRequest);
 	}
 
+	public Pessoa fromDTO(PessoaDTO objDTO) {
+		throw new UnsupportedOperationException();
+	}
 	
 
 }

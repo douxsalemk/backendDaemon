@@ -2,6 +2,8 @@ package com.salemdoux.ecole.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+
 import com.salemdoux.ecole.domain.Contact;
 
 public class ContactDTO implements Serializable{
@@ -11,7 +13,9 @@ public class ContactDTO implements Serializable{
 	
 	private Integer id;
 	
+	@Email
 	private String email;
+	
 	private String telefone;
 
 

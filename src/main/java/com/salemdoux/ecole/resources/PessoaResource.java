@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.salemdoux.ecole.domain.Pessoa;
-import com.salemdoux.ecole.domain.Pessoa;
 import com.salemdoux.ecole.dto.PessoaDTO;
 import com.salemdoux.ecole.services.PessoaService;
 
