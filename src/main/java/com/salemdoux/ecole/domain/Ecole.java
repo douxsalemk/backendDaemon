@@ -1,19 +1,14 @@
 package com.salemdoux.ecole.domain;
 
-import java.util.Date;
-import java.util.List;
+import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import com.salemdoux.ecole.domain.enums.Sexe;
 
 @Entity
-public class Ecole extends Pessoa {
+public class Ecole implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,23 +30,21 @@ public class Ecole extends Pessoa {
 	 * @JsonIgnore
 	 * 
 	 * @OneToMany(mappedBy="ecole") private List<Eleve> eleves;
+	 * 
+	 * @OneToMany private List<Contact> contacts;
+	 * 
+	 * @OneToOne private Matricule matricule;
+	 * 
 	 */
-	@OneToMany
-	private List<Contact> contacts;
-
-	@OneToOne
-	private Matricule matricule;
-
 	public Ecole() {
 
 	}
 
-	public Ecole(Integer id, String nom, String postNom, String preNom, Date dateDeNaissance, Adresse adresse,
-			Contact contact, Sexe sexe, String ecole, Matricule matricule) {
-		super(id, nom, postNom, preNom, dateDeNaissance, adresse, contact, sexe);
+	public Ecole(Integer id, String ecole) {
+		super();
 		this.id = id;
 		this.ecole = ecole;
-		this.matricule = matricule;
+
 	}
 
 	public Integer getId() {
@@ -70,15 +63,12 @@ public class Ecole extends Pessoa {
 		this.ecole = ecole;
 	}
 
-	public Matricule getMatricule() {
-		return matricule;
-	}
-
-	public void setMatricule(Matricule matricule) {
-		this.matricule = matricule;
-	}
-
 	/*
+	 * public Matricule getMatricule() { return matricule; }
+	 * 
+	 * public void setMatricule(Matricule matricule) { this.matricule = matricule; }
+	 * 
+	 * 
 	 * public List<Employe> getEmployes() { return employes; }
 	 * 
 	 * public void setEmployes(List<Employe> employes) { this.employes = employes; }
@@ -97,15 +87,11 @@ public class Ecole extends Pessoa {
 	 * public List<Eleve> getEleves() { return eleves; }
 	 * 
 	 * public void setEleves(List<Eleve> eleves) { this.eleves = eleves; }
+	 * 
+	 * public List<Contact> getContacts() { return contacts; }
+	 * 
+	 * public void setContacts(List<Contact> contacts) { this.contacts = contacts; }
 	 */
-	public List<Contact> getContacts() {
-		return contacts;
-	}
-
-	public void setContacts(List<Contact> contacts) {
-		this.contacts = contacts;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

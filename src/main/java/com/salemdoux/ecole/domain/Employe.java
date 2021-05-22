@@ -32,6 +32,7 @@ public class Employe extends Pessoa {
 	private Matricule matricule;
 		
 	@JoinColumn(name="fonction_id")
+	
 	@OneToOne
 	private Fonction fonction;
 

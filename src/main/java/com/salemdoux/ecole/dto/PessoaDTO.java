@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 import com.salemdoux.ecole.domain.Pessoa;
+import com.salemdoux.ecole.domain.enums.Sexe;
 
 public class PessoaDTO implements Serializable{
 
@@ -27,6 +28,8 @@ public class PessoaDTO implements Serializable{
 	@Length(min=3, max=120, message= "O tamanho deve ser entre 3 e 120 caracteres")
 	private String preNom;
 	
+	private Integer sexe;
+	
 	public PessoaDTO() {
 		
 	}
@@ -36,6 +39,8 @@ public class PessoaDTO implements Serializable{
 		nom = obj.getNom();
 		preNom = obj.getPreNom();
 		postNom = obj.getPostNom();
+		sexe = obj.getSexe().getCod();
+		
 	}
 
 	public Integer getId() {
@@ -70,5 +75,12 @@ public class PessoaDTO implements Serializable{
 		this.preNom = preNom;
 	}
 
+	public Sexe getSexe() {
+		return Sexe.toEnum(sexe);
+	}
+
+	public void setSexe(Sexe sexe) {
+		this.sexe = sexe.getCod();
+	}
 	
 }

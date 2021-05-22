@@ -22,9 +22,12 @@ public class Matricule implements Serializable {
 
 	private Number numero;
 
-	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "matricule")
-	private Ecole ecole;
+	/*
+	 * @JsonIgnore
+	 * 
+	 * @OneToOne(cascade = CascadeType.ALL, mappedBy = "matricule") private Ecole
+	 * ecole;
+	 */
 
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "matricule")
@@ -33,33 +36,31 @@ public class Matricule implements Serializable {
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "matricule")
 	private Eleve eleve;
-	
+
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "matricule")
 	private Employe employe;
 
 	@OneToOne
 	private Actif actif;
-	
+
 	public Matricule() {
-		
+
 	}
-	
+
 	public Matricule(Integer id, Number numero, Actif actif) {
 		super();
 		this.id = id;
 		this.numero = numero;
 		this.actif = actif;
 	}
-	
 
-	public Ecole getEcole() {
-		return ecole;
-	}
-
-	public void setEcole(Ecole ecole) {
-		this.ecole = ecole;
-	}
+	/*
+	 * public Ecole getEcole() { return ecole; }
+	 * 
+	 * public void setEcole(Ecole ecole) { this.ecole = ecole; }
+	 * 
+	 */
 	public Admistration getAdmistrateur() {
 		return admistrateur;
 	}
@@ -84,8 +85,6 @@ public class Matricule implements Serializable {
 		this.employe = employe;
 	}
 
-
-
 	public Integer getId() {
 		return id;
 	}
@@ -102,11 +101,11 @@ public class Matricule implements Serializable {
 		this.id = id;
 	}
 
-	public Number getMatricule() {
+	public Number getNumero() {
 		return numero;
 	}
 
-	public void setMatricule(Number numero) {
+	public void setNumero(Number numero) {
 		this.numero = numero;
 	}
 

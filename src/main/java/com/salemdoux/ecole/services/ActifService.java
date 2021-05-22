@@ -11,7 +11,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.salemdoux.ecole.domain.Actif;
-import com.salemdoux.ecole.domain.Actif;
 import com.salemdoux.ecole.repositories.ActifRepository;
 import com.salemdoux.ecole.services.exceptions.DataIntegrityException;
 

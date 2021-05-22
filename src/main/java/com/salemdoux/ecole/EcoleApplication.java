@@ -103,8 +103,8 @@ public class EcoleApplication implements CommandLineRunner {
 
 	//	pessoaRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12));
 
-		Actif ac1 = new Actif(null, true);
-		Matricule m1 = new Matricule(null, 1, ac1);
+//		Actif ac1 = new Actif(null, true);
+	//	Matricule m1 = new Matricule(null, 1, ac1);
 
 		Actif ac2 = new Actif(null, true);
 		Matricule m2 = new Matricule(null, 2, ac2);
@@ -142,8 +142,8 @@ public class EcoleApplication implements CommandLineRunner {
 	//	Actif ac13 = new Actif(null, true);
 	//	Matricule m13 = new Matricule(null, 13, ac13);
 
-		actifRepository.saveAll(Arrays.asList(ac1, ac2, ac3, ac4, ac5, ac6, ac7, ac8, ac9, ac10, ac11, ac12));
-		matriculeRepository.saveAll(Arrays.asList(m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12));
+		actifRepository.saveAll(Arrays.asList( ac2, ac3, ac4, ac5, ac6, ac7, ac8, ac9, ac10, ac11, ac12));
+		matriculeRepository.saveAll(Arrays.asList( m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12));
 
 
 	//  Pessoa p1 = new Pessoa(null, "Doux", "Salem", "Kayembe", sdf.parse("10/03/1900"), a1, c1, Sexe.H);
@@ -152,7 +152,7 @@ public class EcoleApplication implements CommandLineRunner {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-		Ecole e1 = new Ecole(null, "Doux", "Salem", "Kayembe", sdf.parse("10/03/1900"), a1, c1, Sexe.H, "G.S CORBANS", m1);
+		Ecole e1 = new Ecole(null, "G.S CORBANS");
 
 		
 	//	Pessoa p2 = new Pessoa(null, "Detty", "Kayaya", "Mukeba", sdf.parse("11/03/1991"), a2, c2, Sexe.F);

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.salemdoux.ecole.domain.Ecole;
-import com.salemdoux.ecole.domain.Ecole;
 import com.salemdoux.ecole.dto.EcoleDTO;
 import com.salemdoux.ecole.services.EcoleService;
 

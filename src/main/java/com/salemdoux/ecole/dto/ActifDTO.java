@@ -2,13 +2,9 @@ package com.salemdoux.ecole.dto;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Length;
-
 import com.salemdoux.ecole.domain.Actif;
-import com.salemdoux.ecole.domain.Adresse;
 
 public class ActifDTO implements Serializable {
 

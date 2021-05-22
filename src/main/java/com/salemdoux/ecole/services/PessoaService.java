@@ -11,7 +11,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.salemdoux.ecole.domain.Pessoa;
-import com.salemdoux.ecole.dto.PessoaDTO;
 import com.salemdoux.ecole.repositories.PessoaRepository;
 import com.salemdoux.ecole.services.exceptions.DataIntegrityException;
 
@@ -29,18 +28,25 @@ public class PessoaService {
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Pessoa.class.getName()));
 
 	}
-	
-	public Pessoa insert(Pessoa obj) {
-		obj.setId(null);
-		return repo.save(obj);
-	}
+	/*
+	 * public Pessoa insert(Pessoa obj) { obj.setId(null); return repo.save(obj); }
+	 */
 
 	public Pessoa update(Pessoa obj) throws ObjectNotFoundException {
-		find(obj.getId());
-		return repo.save(obj);
+		Pessoa newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 
-	public void delete(Integer id) throws ObjectNotFoundException{
+	private void updateData(Pessoa newObj, Pessoa obj) {
+		newObj.setNom(obj.getNom());
+		newObj.setPostNom(obj.getPostNom());
+		newObj.setPreNom(obj.getPreNom());
+		newObj.setSexe(obj.getSexe());
+		newObj.setDateDeNaissance(obj.getDateDeNaissance());
+	}
+
+	public void delete(Integer id) throws ObjectNotFoundException {
 		find(id);
 		try {
 			repo.deleteById(id);
@@ -49,19 +55,20 @@ public class PessoaService {
 
 		}
 	}
-	
-	public List<Pessoa> findAll(){
+
+	public List<Pessoa> findAll() {
 		return repo.findAll();
 	}
-	
+
 	public Page<Pessoa> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
 
-	public Pessoa fromDTO(PessoaDTO objDTO) {
-		throw new UnsupportedOperationException();
-	}
-	
-
+	/* NÂO SE PODE INICIALIZAR UMA PESSOA
+	 * 
+	 * public Pessoa fromDTO(PessoaDTO objDto) { return new Pessoa(objDto.getId(),
+	 * objDto.getNom(), objDto.getPostNom(), objDto.getPreNom(), null, null, null);
+	 * }
+	 */
 }
