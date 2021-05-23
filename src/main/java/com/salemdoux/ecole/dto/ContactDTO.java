@@ -3,6 +3,9 @@ package com.salemdoux.ecole.dto;
 import java.io.Serializable;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.salemdoux.ecole.domain.Contact;
 
@@ -16,6 +19,8 @@ public class ContactDTO implements Serializable{
 	@Email
 	private String email;
 	
+	@NotEmpty(message = "prenchimento obrigatório")
+	@Length(min=8, max=15, message= "O tamanho deve ser entre 8 e 15 caracteres")
 	private String telefone;
 
 

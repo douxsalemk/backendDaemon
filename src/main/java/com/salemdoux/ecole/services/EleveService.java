@@ -3,6 +3,8 @@ package com.salemdoux.ecole.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -54,6 +56,7 @@ public class EleveService {
 
 	}
 
+	@Transactional
 	public Eleve insert(ObjectNewDTO objDto) {
 
 		Adresse a = new Adresse(null, objDto.getProvince(), objDto.getVille(), objDto.getComune(), objDto.getQuartier(),
@@ -75,18 +78,19 @@ public class EleveService {
 		return e;
 	}
 
-	/*
-	 * public Eleve update(Eleve obj) { Eleve newObj = find(obj.getId());
-	 * updateData(newObj, obj); return repo.save(newObj); }
-	 * 
-	 * private void updateData(Eleve newObj, Eleve obj) {
-	 * newObj.setNom(obj.getNom()); newObj.setPostNom(obj.getPostNom());
-	 * newObj.setPreNom(obj.getPreNom()); newObj.setSexe(obj.getSexe());
-	 * newObj.setDateDeNaissance(obj.getDateDeNaissance());
-	 * newObj.setAdresse(obj.getAdresse()); newObj.setContact(obj.getContact());
-	 * newObj.setEcole(obj.getEcole()); newObj.setMatricule(obj.getMatricule()); }
-	 * 
-	 */
+	public Eleve update(Eleve obj) {
+		Eleve newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
+
+	private void updateData(Eleve newObj, Eleve obj) {
+		newObj.setNom(obj.getNom());
+		newObj.setPostNom(obj.getPostNom());
+		newObj.setPreNom(obj.getPreNom());
+		newObj.setSexe(obj.getSexe());
+	}
+
 	public void delete(Integer id) {
 		find(id);
 		try {

@@ -3,6 +3,7 @@ package com.salemdoux.ecole.services;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -27,6 +28,7 @@ import com.salemdoux.ecole.repositories.FonctionRepository;
 import com.salemdoux.ecole.repositories.MatriculeRepository;
 import com.salemdoux.ecole.services.exceptions.DataIntegrityException;
 import com.salemdoux.ecole.services.exceptions.ObjectNotFoundException;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class EmployeService {
@@ -59,6 +61,7 @@ public class EmployeService {
 
 	}
 
+	@Transactional
 	public Employe insert(ObjectNewDTO objDto) {
 
 		Adresse a = new Adresse(null, objDto.getProvince(), objDto.getVille(), objDto.getComune(), objDto.getQuartier(),
@@ -82,18 +85,19 @@ public class EmployeService {
 		return e;
 	}
 
-	/*
-	 * public Employe update(Employe obj) { Employe newObj = find(obj.getId());
-	 * updateData(newObj, obj); return repo.save(newObj); }
-	 * 
-	 * private void updateData(Employe newObj, Employe obj) {
-	 * newObj.setNom(obj.getNom()); newObj.setPostNom(obj.getPostNom());
-	 * newObj.setPreNom(obj.getPreNom()); newObj.setSexe(obj.getSexe());
-	 * newObj.setDateDeNaissance(obj.getDateDeNaissance());
-	 * newObj.setAdresse(obj.getAdresse()); newObj.setContact(obj.getContact());
-	 * newObj.setEcole(obj.getEcole()); newObj.setMatricule(obj.getMatricule()); }
-	 * 
-	 */
+	public Employe update(Employe obj) {
+		Employe newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
+
+	private void updateData(Employe newObj, Employe obj) {
+		newObj.setNom(obj.getNom());
+		newObj.setPostNom(obj.getPostNom());
+		newObj.setPreNom(obj.getPreNom());
+		newObj.setSexe(obj.getSexe());
+	}
+	
 	public void delete(Integer id) {
 		find(id);
 		try {

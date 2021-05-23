@@ -10,9 +10,9 @@ public class AdmistrationDTO implements Serializable{
 
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer id;
-		
+
 	private Ecole ecole;
 
 	private Matricule matricule;

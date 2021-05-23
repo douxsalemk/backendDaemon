@@ -3,6 +3,8 @@ package com.salemdoux.ecole.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -54,6 +56,7 @@ public class AdmistrationService {
 
 	}
 
+	@Transactional
 	public Admistration insert(ObjectNewDTO objDto) {
 
 		Adresse a = new Adresse(null, objDto.getProvince(), objDto.getVille(), objDto.getComune(), objDto.getQuartier(),
@@ -75,18 +78,20 @@ public class AdmistrationService {
 		return e;
 	}
 
-	/*
-	 * public Admistration update(Admistration obj) { Admistration newObj = find(obj.getId());
-	 * updateData(newObj, obj); return repo.save(newObj); }
-	 * 
-	 * private void updateData(Admistration newObj, Admistration obj) {
-	 * newObj.setNom(obj.getNom()); newObj.setPostNom(obj.getPostNom());
-	 * newObj.setPreNom(obj.getPreNom()); newObj.setSexe(obj.getSexe());
-	 * newObj.setDateDeNaissance(obj.getDateDeNaissance());
-	 * newObj.setAdresse(obj.getAdresse()); newObj.setContact(obj.getContact());
-	 * newObj.setEcole(obj.getEcole()); newObj.setMatricule(obj.getMatricule()); }
-	 * 
-	 */
+	public Admistration update(Admistration obj) {
+		Admistration newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
+
+	private void updateData(Admistration newObj, Admistration obj) {
+		newObj.setNom(obj.getNom());
+		newObj.setPostNom(obj.getPostNom());
+		newObj.setPreNom(obj.getPreNom());
+		newObj.setSexe(obj.getSexe());
+	}
+	
+	
 	public void delete(Integer id) {
 		find(id);
 		try {

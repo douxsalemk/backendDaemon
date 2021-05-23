@@ -44,13 +44,12 @@ public class EleveResource {
 		return ResponseEntity.created(uri).build();
 	}
 
-	/*
-	 * @RequestMapping(value="/{id}",method=RequestMethod.PUT) public
-	 * ResponseEntity<Void> update(@Valid @RequestBody Eleve obj, @PathVariable
-	 * Integer id){ obj.setId(id); obj = service.update(obj); return
-	 * ResponseEntity.noContent().build(); }
-	 * 
-	 */
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody Eleve obj, @PathVariable Integer id) {
+		obj.setId(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
+	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Object> delete(@PathVariable Integer id) {
