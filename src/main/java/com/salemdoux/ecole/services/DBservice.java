@@ -86,8 +86,8 @@ public class DBservice {
 		Contact c2 = new Contact(null, "detty@gmail.com", "219913265");
 		Contact c3 = new Contact(null, "olivier@gmail.com", "219413295");
 		Contact c4 = new Contact(null, "alex@gmail.com", "219913235");
-		Contact c5 = new Contact(null, "jean@gmail.com", "219913295");
-		Contact c6 = new Contact(null, "matheus@gmail.com", "219113295");
+		Contact c5 = new Contact(null, "douxsalem@id.uff.br", "219913295");
+		Contact c6 = new Contact(null, "makia.mukoko@gmmail.com", "219113295");
 		Contact c7 = new Contact(null, "jovial@gmail.com", "219993295");
 		Contact c8 = new Contact(null, "eraste@gmail.com", "219983295");
 		Contact c9 = new Contact(null, "eben@gmail.com", "219913695");
@@ -172,14 +172,14 @@ public class DBservice {
 		// a5.setPessoas(Arrays.asList(p5));
 		// c5.setPessoas(Arrays.asList(p5));
 
-		Eleve el1 = new Eleve(null, "Jean", "Makanga", "Mayombo", sdf.parse("14/03/1994"), a5, c5, Sexe.H, e1, m4);
+		Eleve el1 = new Eleve(null, "Doux", "Salem", "Kayembe", sdf.parse("10/03/1990"), a5, c5, Sexe.H, e1, m4);
 
 		// Pessoa p6 = new Pessoa(null, "Matheus", "Oliveira", "Santos",
 		// sdf.parse("15/03/1995"), a1, c6, Sexe.H);
 		// a1.setPessoas(Arrays.asList(p6));
 		// c6.setPessoas(Arrays.asList(p6));
 
-		Eleve el2 = new Eleve(null, "Matheus", "Oliveira", "Santos", sdf.parse("15/03/1995"), a1, c6, Sexe.H, e1, m5);
+		Eleve el2 = new Eleve(null, "Olivier", "Makia", "Mukoko", sdf.parse("15/03/1995"), a1, c6, Sexe.H, e1, m5);
 
 		// Pessoa p7 = new Pessoa(null, "Sarah", "Mbuyi", "Kayembe",
 		// sdf.parse("16/03/1990"), a2, c7, Sexe.F);
