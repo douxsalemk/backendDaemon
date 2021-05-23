@@ -57,6 +57,12 @@
 			<scope>test</scope>
 		</dependency>
 
+       <!-- Adicionando o mysql -->
+       <dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
