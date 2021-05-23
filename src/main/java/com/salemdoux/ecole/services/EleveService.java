@@ -3,14 +3,13 @@ package com.salemdoux.ecole.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.salemdoux.ecole.domain.Actif;
 import com.salemdoux.ecole.domain.Adresse;
@@ -49,6 +48,10 @@ public class EleveService {
 	@Autowired
 	private ActifRepository actifRepository;
 
+	@Autowired
+	private EmailService emailService;
+	
+	
 	public Eleve find(Integer id) {
 		Optional<Eleve> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -75,6 +78,7 @@ public class EleveService {
 		contactRepository.save(c);
 		ecoleRepository.save(ec);
 		repo.save(e);
+		emailService.sendOrderConfirmationEmail(e);
 		return e;
 	}
 

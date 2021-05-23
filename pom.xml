@@ -57,12 +57,18 @@
 			<scope>test</scope>
 		</dependency>
 
-       <!-- Adicionando o mysql -->
-       <dependency>
+		<!-- Adicionando o mysql -->
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
+		<!-- Adicionando dep de email -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+	
 	</dependencies>
 
 	<build>

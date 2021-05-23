@@ -82,7 +82,7 @@ public class Eleve extends Pessoa {
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy HH:mm:ss");
 		StringBuilder builder = new StringBuilder();
-		builder.append("BIENVENU A L'ECOLE: ");
+		builder.append("\nBIENVENU A L'ECOLE: ");
 		builder.append(ecole.getEcole());
 		builder.append("\n ELEVE [");
 		builder.append("\n    Nom : ");
@@ -93,9 +93,9 @@ public class Eleve extends Pessoa {
 		builder.append(getPreNom());
 		builder.append("\n    Sexe : ");
 		builder.append(getSexe().getDescricao());
-		builder.append("    Date de Naisance : ");
+		builder.append("\n    Date de Naisance : ");
 		builder.append(sdf.format(getDateDeNaissance()));
-		builder.append("\n]");
+		builder.append("    \n]");
 		builder.append("\n\nADRESSE [ ");
 		builder.append("\n    Province :");
 		builder.append(getAdresse().getProvince());
@@ -109,13 +109,18 @@ public class Eleve extends Pessoa {
 		builder.append(getAdresse().getAvenue());
 		builder.append("\n    Numero :");
 		builder.append(getAdresse().getReference());
-		builder.append("\n]");
+		builder.append("    \n]");
 		builder.append("\n\nCONTACT [");
 		builder.append("\n    Email : ");
 		builder.append(getContact().getEmail());
 		builder.append("\n    Telefone :");
 		builder.append(getContact().getTelefone());
-		builder.append("]");
+		builder.append("    \n]");
+		builder.append("\n\nMATRICULE [");
+		builder.append("\n    Numero : ");
+		builder.append(getMatricule().getNumero());
+		builder.append("    \n]");
+		builder.append("\n]");
 		
 		return builder.toString();
 	}
