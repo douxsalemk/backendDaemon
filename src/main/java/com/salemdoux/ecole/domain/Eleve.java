@@ -1,5 +1,6 @@
 package com.salemdoux.ecole.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -76,6 +77,49 @@ public class Eleve extends Pessoa {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
+	@Override
+	public String toString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy HH:mm:ss");
+		StringBuilder builder = new StringBuilder();
+		builder.append("BIENVENU A L'ECOLE: ");
+		builder.append(ecole.getEcole());
+		builder.append("\n ELEVE [");
+		builder.append("\n    Nom : ");
+		builder.append(getPreNom());
+		builder.append("\n    PostNom : ");
+		builder.append(getPostNom());
+		builder.append("\n    PreNom :  ");
+		builder.append(getPreNom());
+		builder.append("\n    Sexe : ");
+		builder.append(getSexe().getDescricao());
+		builder.append("    Date de Naisance : ");
+		builder.append(sdf.format(getDateDeNaissance()));
+		builder.append("\n]");
+		builder.append("\n\nADRESSE [ ");
+		builder.append("\n    Province :");
+		builder.append(getAdresse().getProvince());
+		builder.append("\n    Ville :");
+		builder.append(getAdresse().getVille());
+		builder.append("\n    Comune :");
+		builder.append(getAdresse().getComune());
+		builder.append("\n    Quartier :");
+		builder.append(getAdresse().getQuartier());
+		builder.append("\n    Avenue :");
+		builder.append(getAdresse().getAvenue());
+		builder.append("\n    Numero :");
+		builder.append(getAdresse().getReference());
+		builder.append("\n]");
+		builder.append("\n\nCONTACT [");
+		builder.append("\n    Email : ");
+		builder.append(getContact().getEmail());
+		builder.append("\n    Telefone :");
+		builder.append(getContact().getTelefone());
+		builder.append("]");
+		
+		return builder.toString();
+	}
+
 
 	@Override
 	public boolean equals(Object obj) {
