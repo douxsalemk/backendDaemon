@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,12 +32,14 @@ public class EleveResource {
 	@Autowired
 	private EleveService service;
 
+	@CrossOrigin 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Eleve> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		Eleve obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
+	@CrossOrigin 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ObjectNewDTO objDto) {
 		Eleve obj = service.insert(objDto);
@@ -44,6 +47,7 @@ public class EleveResource {
 		return ResponseEntity.created(uri).build();
 	}
 
+	@CrossOrigin 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody Eleve obj, @PathVariable Integer id) {
 		obj.setId(id);
@@ -51,12 +55,14 @@ public class EleveResource {
 		return ResponseEntity.noContent().build();
 	}
 
+	@CrossOrigin 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Object> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 
+	@CrossOrigin 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<EleveDTO>> findAll() {
 		List<Eleve> list = service.findAll();
@@ -64,6 +70,7 @@ public class EleveResource {
 		return ResponseEntity.ok().body(listDto);
 	}
 
+	@CrossOrigin 
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
 	public ResponseEntity<Page<EleveDTO>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,

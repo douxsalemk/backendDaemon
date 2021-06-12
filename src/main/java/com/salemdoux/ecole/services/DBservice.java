@@ -84,7 +84,7 @@ public class DBservice {
 		Contact c1 = new Contact(null, "doux@gmail.com", "219913295");
 
 		Contact c2 = new Contact(null, "detty@gmail.com", "219913265");
-		Contact c3 = new Contact(null, "olivier@gmail.com", "219413295");
+		Contact c3 = new Contact(null, "olivir@gmail.com", "219413295");
 		Contact c4 = new Contact(null, "alex@gmail.com", "219913235");
 		Contact c5 = new Contact(null, "douxsalem@id.uff.br", "219913295");
 		Contact c6 = new Contact(null, "makia.mukoko@gmmail.com", "219113295");

@@ -46,9 +46,18 @@ public class Actif implements Serializable {
 		this.id = id;
 	}
 
-	public Boolean getActif() {
-		return actif;
+	public String getActif() {
+		String active = null;
+		
+		if (this.actif == true)
+			active =  "actif";
+				
+		if (this.actif == false) 
+			active = "inactif";
+	
+		return active;
 	}
+	
 
 	public void setActif(Boolean actif) {
 		this.actif = actif;

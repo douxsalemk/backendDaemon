@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,12 +32,14 @@ public class EmployeResource {
 	@Autowired
 	private EmployeService service;
 
+	@CrossOrigin 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Employe> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		Employe obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
+	@CrossOrigin 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ObjectNewDTO objDto) {
 		Employe obj = service.insert(objDto);
@@ -45,6 +48,7 @@ public class EmployeResource {
 	}
 
 	
+	@CrossOrigin 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody Employe obj, @PathVariable Integer id) {
 		obj.setId(id);
@@ -52,12 +56,14 @@ public class EmployeResource {
 		return ResponseEntity.noContent().build();
 	}
 
+	@CrossOrigin 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Object> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 
+	@CrossOrigin 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<EmployeDTO>> findAll() {
 		List<Employe> list = service.findAll();
@@ -65,6 +71,7 @@ public class EmployeResource {
 		return ResponseEntity.ok().body(listDto);
 	}
 
+	@CrossOrigin 
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
 	public ResponseEntity<Page<EmployeDTO>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,

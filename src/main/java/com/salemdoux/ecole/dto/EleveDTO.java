@@ -13,6 +13,11 @@ public class EleveDTO implements Serializable{
 	
 	private Integer id;
 
+
+	private String nom;
+	private String postNom;
+	private String preNom;
+	
 	private Ecole ecole;
 
 	private Matricule matricule;
@@ -23,6 +28,9 @@ public class EleveDTO implements Serializable{
 
 	public EleveDTO(Eleve obj) {
 		id = obj.getId();
+		nom = obj.getNom();
+		postNom = obj.getPostNom();
+		preNom = obj.getPreNom();
 		ecole = obj.getEcole();
 		matricule = obj.getMatricule();
 	}
@@ -51,4 +59,27 @@ public class EleveDTO implements Serializable{
 		this.matricule = matricule;
 	}
 	
+	public String getNom() {
+		return nom;
+	}
+	
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
+	public String getPostNom() {
+		return postNom;
+	}
+	
+	public void setPostNom(String postNom) {
+		this.postNom = postNom;
+	}
+	
+	public String getPreNom() {
+		return preNom;
+	}
+	
+	public void setPreNom(String preNom) {
+		this.preNom = preNom;
+	}
 }

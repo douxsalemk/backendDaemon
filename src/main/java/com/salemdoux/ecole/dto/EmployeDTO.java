@@ -13,6 +13,10 @@ public class EmployeDTO implements Serializable {
 
 	private Integer id;
 
+	private String nom;
+	private String postNom;
+	private String preNom;
+	
 	private Ecole ecole;
 
 	private Matricule matricule;
@@ -25,6 +29,9 @@ public class EmployeDTO implements Serializable {
 
 	public EmployeDTO(Employe obj) {
 		id = obj.getId();
+		nom = obj.getNom();
+		postNom = obj.getPostNom();
+		preNom = obj.getPreNom();
 		ecole = obj.getEcole();
 		matricule = obj.getMatricule();
 		fonction = obj.getFonction();
@@ -60,6 +67,30 @@ public class EmployeDTO implements Serializable {
 
 	public void setFonction(Fonction fonction) {
 		this.fonction = fonction;
+	}
+	
+	public String getNom() {
+		return nom;
+	}
+	
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
+	public String getPostNom() {
+		return postNom;
+	}
+	
+	public void setPostNom(String postNom) {
+		this.postNom = postNom;
+	}
+	
+	public String getPreNom() {
+		return preNom;
+	}
+	
+	public void setPreNom(String preNom) {
+		this.preNom = preNom;
 	}
 
 }
