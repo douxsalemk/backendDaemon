@@ -5,6 +5,7 @@ import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,12 +27,14 @@ public class FonctionResource {
 	@Autowired
 	private FonctionService service;
 	
+	@CrossOrigin 
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		Fonction obj = service.find(id);		
 		return ResponseEntity.ok().body(obj);
 	}
 	
+	@CrossOrigin 
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Fonction obj){
 		obj = service.insert(obj);
@@ -40,6 +43,7 @@ public class FonctionResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@CrossOrigin 
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
 	public ResponseEntity<Void> update(@RequestBody Fonction obj, @PathVariable Integer id) throws ObjectNotFoundException{
 		obj.setId(id);
@@ -53,12 +57,12 @@ public class FonctionResource {
 		return ResponseEntity.noContent().build();
 	}
   
-	
+	@CrossOrigin 
 	@RequestMapping(value="/page", method=RequestMethod.GET)
 	public ResponseEntity<Page<FonctionDTO>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
-			@RequestParam(value="orderBy", defaultValue="matricule") String orderBy, 
+			@RequestParam(value="orderBy", defaultValue="fonction") String orderBy, 
 			@RequestParam(value="direction", defaultValue="ASC") String direction) {
 		Page<Fonction> list = service.findPage(page, linesPerPage, orderBy, direction);
 		Page<FonctionDTO> listDto = list.map(obj -> new FonctionDTO(obj));  

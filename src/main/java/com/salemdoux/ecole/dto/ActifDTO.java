@@ -13,7 +13,7 @@ public class ActifDTO implements Serializable {
 	private Integer id;
 
 	@NotNull
-	private Boolean actif;
+	private String actif;
 
 	public ActifDTO() {
 
@@ -33,11 +33,11 @@ public class ActifDTO implements Serializable {
 		this.id = id;
 	}
 
-	public Boolean getActif() {
+	public @NotNull String getActif() {
 		return actif;
 	}
 	
-	public void setActif(Boolean actif) {
-		this.actif = actif;
-	}
+//	public void setActif(Boolean actif) {
+//		this.actif = actif;
+//	}
 }

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CertificatDeFinDetude" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4ea7dbfe-c044-4689-a74b-7d366c5a89fa">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="postgres"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[SELECT * FROM pessoa
+INNER JOIN adresse ON pessoa.adresse_id = adresse.id
+INNER JOIN contact ON pessoa.contact_id = contact.id]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="date_de_naissance" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="date_de_naissance"/>
+		<property name="com.jaspersoft.studio.field.label" value="date_de_naissance"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="nom" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nom"/>
+		<property name="com.jaspersoft.studio.field.label" value="nom"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="post_nom" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="post_nom"/>
+		<property name="com.jaspersoft.studio.field.label" value="post_nom"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="pre_nom" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="pre_nom"/>
+		<property name="com.jaspersoft.studio.field.label" value="pre_nom"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="sexe" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="sexe"/>
+		<property name="com.jaspersoft.studio.field.label" value="sexe"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="adresse_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="adresse_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="adresse_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="contact_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="contact_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="contact_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="COLUMN_9" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="adresse"/>
+	</field>
+	<field name="avenue" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="avenue"/>
+		<property name="com.jaspersoft.studio.field.label" value="avenue"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="adresse"/>
+	</field>
+	<field name="comune" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="comune"/>
+		<property name="com.jaspersoft.studio.field.label" value="comune"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="adresse"/>
+	</field>
+	<field name="province" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="province"/>
+		<property name="com.jaspersoft.studio.field.label" value="province"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="adresse"/>
+	</field>
+	<field name="quartier" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="quartier"/>
+		<property name="com.jaspersoft.studio.field.label" value="quartier"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="adresse"/>
+	</field>
+	<field name="reference" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="reference"/>
+		<property name="com.jaspersoft.studio.field.label" value="reference"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="adresse"/>
+	</field>
+	<field name="ville" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ville"/>
+		<property name="com.jaspersoft.studio.field.label" value="ville"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="adresse"/>
+	</field>
+	<field name="COLUMN_16" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="contact"/>
+	</field>
+	<field name="email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="email"/>
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="contact"/>
+	</field>
+	<field name="telefone" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="telefone"/>
+		<property name="com.jaspersoft.studio.field.label" value="telefone"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="contact"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="555" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="802" height="555" uuid="998a646f-2bbd-47f8-b256-fade1e324c4a"/>
+				<imageExpression><![CDATA["img/background.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="120" width="802" height="40" uuid="840ee896-55ec-4332-9fbf-22fc606cb91a"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIPLOME DE FIN D'ETUDES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="220" width="802" height="30" uuid="8b7d4dd6-dda6-467c-a9d9-0e4da785841c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Ce certificat est remis à:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="260" width="802" height="59" forecolor="#0A0A0A" uuid="e020ad8e-a65b-46a1-a785-7731cf3ed666"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans Condensed" size="26" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nom} + " " + $F{post_nom} + " " +$F{pre_nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="330" width="700" height="59" uuid="5930f540-37fa-462c-9aec-0a311d2653ee"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Né le: " + "<b>"+ new SimpleDateFormat("dd/MM/yyyy").format($F{date_de_naissance} )+ "</b>" +".  Pour avoir satisfait aux exigences requise pour l'obtention du diplôme du Brevet  remis le  <b>" + new SimpleDateFormat("dd/MM/yyyy").format( new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="492" width="802" height="30" uuid="09774aad-cd06-4566-a1d0-c565119cc822"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["GS. LE CORBANS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="440" width="300" height="45" uuid="08192639-f72b-4f79-8b22-d4eccd169ce3"/>
+				<box>
+					<pen lineWidth="1.5"/>
+					<topPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Maguy Ndaya</b><br>Promotrice"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

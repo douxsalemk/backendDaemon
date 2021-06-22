@@ -27,7 +27,7 @@ public class Classe implements Serializable {
 	private Niveau niveau;
 	
 	@ManyToMany
-	@JoinTable(name = "CLASSE_DISCIPLINE",
+	@JoinTable(name = "classe_discipline",
 	joinColumns = @JoinColumn(name = "classe_id"),
 	inverseJoinColumns = @JoinColumn(name = "discipline_id")
 	)
