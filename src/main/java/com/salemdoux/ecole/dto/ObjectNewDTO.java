@@ -83,7 +83,7 @@ public class ObjectNewDTO implements Serializable{
 		this.dateDeNaissance = dateDeNaissance;
 	}
 
-	private String ecole;
+	private Integer ecole;
 	
 	
 
@@ -214,11 +214,11 @@ public class ObjectNewDTO implements Serializable{
 		this.numero = numero;
 	}
 
-	public String getEcole() {
+	public Integer getEcole() {
 		return ecole;
 	}
 	
-	public void setEcole(String ecole) {
+	public void setEcole(Integer ecole) {
 		this.ecole = ecole;
 	}
 

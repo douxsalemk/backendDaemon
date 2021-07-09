@@ -3,13 +3,13 @@ package com.salemdoux.ecole.services;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.salemdoux.ecole.domain.Actif;
 import com.salemdoux.ecole.domain.Adresse;
@@ -22,13 +22,11 @@ import com.salemdoux.ecole.dto.ObjectNewDTO;
 import com.salemdoux.ecole.repositories.ActifRepository;
 import com.salemdoux.ecole.repositories.AdresseRepository;
 import com.salemdoux.ecole.repositories.ContactRepository;
-import com.salemdoux.ecole.repositories.EcoleRepository;
 import com.salemdoux.ecole.repositories.EmployeRepository;
 import com.salemdoux.ecole.repositories.FonctionRepository;
 import com.salemdoux.ecole.repositories.MatriculeRepository;
 import com.salemdoux.ecole.services.exceptions.DataIntegrityException;
 import com.salemdoux.ecole.services.exceptions.ObjectNotFoundException;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class EmployeService {
@@ -36,8 +34,8 @@ public class EmployeService {
 	@Autowired
 	private EmployeRepository repo;
 
-	@Autowired
-	private EcoleRepository ecoleRepository;
+//	@Autowired
+//	private EcoleRepository ecoleRepository;
 
 	@Autowired
 	private MatriculeRepository matriculeRepository;
@@ -53,6 +51,10 @@ public class EmployeService {
 
 	@Autowired
 	private ActifRepository actifRepository;
+	
+
+	@Autowired
+	private EcoleService servE;
 
 	public Employe find(Integer id) {
 		Optional<Employe> obj = repo.findById(id);
@@ -62,13 +64,15 @@ public class EmployeService {
 	}
 
 	@Transactional
-	public Employe insert(ObjectNewDTO objDto) {
-
+	public Employe insert(ObjectNewDTO objDto) throws javassist.tools.rmi.ObjectNotFoundException {
+		
+		Ecole ec = servE.find(objDto.getEcole());
+		
 		Adresse a = new Adresse(null, objDto.getProvince(), objDto.getVille(), objDto.getComune(), objDto.getQuartier(),
 				objDto.getAvenue(), objDto.getReference());
 		Contact c = new Contact(null, objDto.getEmail(), objDto.getTelefone());
 		Actif ac = new Actif(null, objDto.getActif());
-		Ecole ec = new Ecole(null, objDto.getEcole());
+//		Ecole ec = new Ecole(null, objDto.getEcole());
 		Matricule m = new Matricule(null, objDto.getNumero(), ac);
 		Fonction f = new Fonction(null, objDto.getFonction());
 
@@ -79,7 +83,7 @@ public class EmployeService {
 		matriculeRepository.save(m);
 		adresseRepository.save(a);
 		contactRepository.save(c);
-		ecoleRepository.save(ec);
+//		ecoleRepository.save(ec);
 		fonctionRepository.save(f);
 		repo.save(e);
 		return e;

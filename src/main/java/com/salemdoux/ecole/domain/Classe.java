@@ -1,16 +1,12 @@
 package com.salemdoux.ecole.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -21,42 +17,68 @@ public class Classe implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	
+	private String descricao;
 
+
+	// @JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="niveau_id")
-	private Niveau niveau;
+	@JoinColumn(name = "anne_scolaire_id")
+	private AnneScolaire anneScolaire;
 	
-	@ManyToMany
-	@JoinTable(name = "classe_discipline",
-	joinColumns = @JoinColumn(name = "classe_id"),
-	inverseJoinColumns = @JoinColumn(name = "discipline_id")
-	)
-	private List<Discipline> disciplines = new ArrayList<>();
+	//@JsonIgnore
+    @ManyToOne
+	@JoinColumn(name = "ecole_id")
+	private Ecole ecole;
+		
+		
 	
-	
-    public List<Discipline> getDisciplines() {
-		return disciplines;
-	}
-
-	public void setDisciplines(List<Discipline> disciplines) {
-		this.disciplines = disciplines;
-	}
-
-	public Niveau getNiveau() {
-		return niveau;
-	}
-
-	public void setNiveau(Niveau niveau) {
-		this.niveau = niveau;
-	}
-
 	public Classe() {
-    	
-    }
+		
+	}
 	
-	public Classe(Integer id) {
+	public Classe(Integer id, String descricao, AnneScolaire anneScolaire, Ecole ecole) {
 		super();
 		this.id = id;
+		this.anneScolaire = anneScolaire;
+		this.descricao = descricao;
+		this.ecole = ecole;
+	}
+//	@ManyToOne
+//	@JoinColumn(name="niveau_id")
+//	private Niveau niveau;
+//	
+//	@ManyToMany
+//	@JoinTable(name = "classe_discipline",
+//	joinColumns = @JoinColumn(name = "classe_id"),
+//	inverseJoinColumns = @JoinColumn(name = "discipline_id")
+//	)
+//	private List<Discipline> disciplines = new ArrayList<>();
+//	
+//	
+//    public List<Discipline> getDisciplines() {
+//		return disciplines;
+//	}
+//
+//	public void setDisciplines(List<Discipline> disciplines) {
+//		this.disciplines = disciplines;
+//	}
+//
+//	public Niveau getNiveau() {
+//		return niveau;
+//	}
+//
+//	public void setNiveau(Niveau niveau) {
+//		this.niveau = niveau;
+//	}
+
+
+	public AnneScolaire getAnneScolaire() {
+		return anneScolaire;
+	}
+
+	public void setAnnescolaire(AnneScolaire anneScolaire) {
+		this.anneScolaire = anneScolaire;
 	}
 
 	public Integer getId() {
@@ -65,6 +87,22 @@ public class Classe implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+	
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Ecole getEcole() {
+		return ecole;
+	}
+
+	public void setEcole(Ecole ecole) {
+		this.ecole = ecole;
 	}
 
 	@Override

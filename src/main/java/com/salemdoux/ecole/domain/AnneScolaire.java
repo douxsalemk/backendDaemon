@@ -1,14 +1,19 @@
 package com.salemdoux.ecole.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class AnneScolaire implements Serializable {
@@ -19,11 +24,18 @@ public class AnneScolaire implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	private String descricao;
+	
 	@Temporal(TemporalType.DATE)
 	private Date dateInicial;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateFinal;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "anneScolaire")
+	private List<Classe> classes = new ArrayList<>();
+
 	
 	public Integer getId() {
 		return id;
@@ -34,11 +46,21 @@ public class AnneScolaire implements Serializable {
 		
 	}
 	
-	public AnneScolaire(Integer id, Date dateInicial, Date dateFinal) {
+	public AnneScolaire(Integer id, String descricao, Date dateInicial, Date dateFinal) {
 		super();
 		this.id = id;
 		this.dateInicial = dateInicial;
 		this.dateFinal = dateFinal;
+		this.descricao = descricao;
+	}
+	
+	public String getDescricao() {
+		return descricao;
+	}
+	
+	
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 

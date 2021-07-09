@@ -1,16 +1,13 @@
 package com.salemdoux.ecole.resources;
 
-import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,56 +18,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.salemdoux.ecole.domain.Eleve;
-import com.salemdoux.ecole.dto.EleveDTO;
-import com.salemdoux.ecole.dto.ObjectNewDTO;
-import com.salemdoux.ecole.services.EleveService;
-import com.salemdoux.ecole.services.JasperService;
+import com.salemdoux.ecole.domain.AnneScolaire;
+import com.salemdoux.ecole.dto.AnneScolaireDTO;
+import com.salemdoux.ecole.services.AnneScolaireService;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value = "/eleves")
-public class EleveResource {
+@RequestMapping(value = "/annescolaires")
+public class AnneScolaireResource {
 
 	@Autowired
-	private EleveService service;
-	
-	@Autowired
-	private JasperService Jservice;
+	private AnneScolaireService service;
 
 	@CrossOrigin 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Eleve> find(@PathVariable Integer id) throws ObjectNotFoundException {
-		Eleve obj = service.find(id);
+	public ResponseEntity<AnneScolaire> find(@PathVariable Integer id) throws ObjectNotFoundException {
+		AnneScolaire obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
 	@CrossOrigin 
-	@RequestMapping(value = "/certificat/pdf/{code}", method = RequestMethod.GET)
-	public void exibirRelatorio1(@PathVariable("code") String code, @RequestParam("acao") String acao,
-			HttpServletResponse response) throws IOException {
-		byte[] bytes = Jservice.exportarPDF(code);
-		response.setContentType(MediaType.APPLICATION_PDF_VALUE);
-		if (acao.equals("v")) {
-			response.setHeader("Content-disposition" , "inline; filename=certificat-"+ code + ".pdf");
-		}else {
-			response.setHeader("Content-disposition" , "attachement; filename=certificat-"+ code + ".pdf");
-		}
-		response.getOutputStream().write(bytes);	
-	}
-	
-	@CrossOrigin 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody ObjectNewDTO objDto) throws ObjectNotFoundException {
-		Eleve obj = service.insert(objDto);
+	public ResponseEntity<Void> insert(@Valid @RequestBody AnneScolaireDTO objDto) {
+		AnneScolaire obj = service.insert(objDto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
+	
 	@CrossOrigin 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody Eleve obj, @PathVariable Integer id) {
+	public ResponseEntity<Void> update(@Valid @RequestBody AnneScolaire obj, @PathVariable Integer id) {
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
@@ -85,20 +64,20 @@ public class EleveResource {
 
 	@CrossOrigin 
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<EleveDTO>> findAll() {
-		List<Eleve> list = service.findAll();
-		List<EleveDTO> listDto = list.stream().map(obj -> new EleveDTO(obj)).collect(Collectors.toList());
+	public ResponseEntity<List<AnneScolaireDTO>> findAll() {
+		List<AnneScolaire> list = service.findAll();
+		List<AnneScolaireDTO> listDto = list.stream().map(obj -> new AnneScolaireDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}
 
 	@CrossOrigin 
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
-	public ResponseEntity<Page<EleveDTO>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
+	public ResponseEntity<Page<AnneScolaireDTO>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "nom") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction) {
-		Page<Eleve> list = service.findPage(page, linesPerPage, orderBy, direction);
-		Page<EleveDTO> listDto = list.map(obj -> new EleveDTO(obj));
+		Page<AnneScolaire> list = service.findPage(page, linesPerPage, orderBy, direction);
+		Page<AnneScolaireDTO> listDto = list.map(obj -> new AnneScolaireDTO(obj));
 		return ResponseEntity.ok().body(listDto);
 	}
 

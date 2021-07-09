@@ -3,14 +3,13 @@ package com.salemdoux.ecole.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.salemdoux.ecole.domain.Actif;
 import com.salemdoux.ecole.domain.Admistration;
@@ -56,27 +55,27 @@ public class AdmistrationService {
 
 	}
 
-	@Transactional
-	public Admistration insert(ObjectNewDTO objDto) {
-
-		Adresse a = new Adresse(null, objDto.getProvince(), objDto.getVille(), objDto.getComune(), objDto.getQuartier(),
-				objDto.getAvenue(), objDto.getReference());
-		Contact c = new Contact(null, objDto.getEmail(), objDto.getTelefone());
-		Actif ac = new Actif(null, objDto.getActif());
-		Ecole ec = new Ecole(null, objDto.getEcole());
-		Matricule m = new Matricule(null, objDto.getNumero(), ac);
-
-		Admistration e = new Admistration(null, objDto.getNom(), objDto.getPostNom(), objDto.getPreNom(), objDto.getDateDeNaissance(),
-				a, c, objDto.getSexe(), ec, m);
-
-		actifRepository.save(ac);
-		matriculeRepository.save(m);
-		adresseRepository.save(a);
-		contactRepository.save(c);
-		ecoleRepository.save(ec);
-		repo.save(e);
-		return e;
-	}
+//	@Transactional
+//	public Admistration insert(ObjectNewDTO objDto) {
+//
+//		Adresse a = new Adresse(null, objDto.getProvince(), objDto.getVille(), objDto.getComune(), objDto.getQuartier(),
+//				objDto.getAvenue(), objDto.getReference());
+//		Contact c = new Contact(null, objDto.getEmail(), objDto.getTelefone());
+//		Actif ac = new Actif(null, objDto.getActif());
+//		Ecole ec = new Ecole(null, objDto.getEcole());
+//		Matricule m = new Matricule(null, objDto.getNumero(), ac);
+//
+//		Admistration e = new Admistration(null, objDto.getNom(), objDto.getPostNom(), objDto.getPreNom(), objDto.getDateDeNaissance(),
+//				a, c, objDto.getSexe(), ec, m);
+//
+//		actifRepository.save(ac);
+//		matriculeRepository.save(m);
+//		adresseRepository.save(a);
+//		contactRepository.save(c);
+//		ecoleRepository.save(ec);
+//		repo.save(e);
+//		return e;
+//	}
 
 	public Admistration update(Admistration obj) {
 		Admistration newObj = find(obj.getId());

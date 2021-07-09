@@ -1,14 +1,11 @@
 package com.salemdoux.ecole.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
 @Entity
 public class Discipline implements Serializable {
@@ -23,8 +20,8 @@ public class Discipline implements Serializable {
 	private String description;
 	private String code;
 
-	@ManyToMany(mappedBy="disciplines")
-	private List<Classe> classes = new ArrayList<>();
+//	@ManyToMany(mappedBy="disciplines")
+//	private List<Classe> classes = new ArrayList<>();
 
 	
 	public Discipline() {

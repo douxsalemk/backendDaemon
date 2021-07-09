@@ -1,11 +1,16 @@
 package com.salemdoux.ecole.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Ecole implements Serializable{
@@ -18,6 +23,10 @@ public class Ecole implements Serializable{
 
 	private String ecole;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "ecole")
+	private List<Classe> classes = new ArrayList<>();
+	
 	/*
 	 * @JsonIgnore
 	 * 
@@ -61,6 +70,14 @@ public class Ecole implements Serializable{
 
 	public void setEcole(String ecole) {
 		this.ecole = ecole;
+	}
+
+	public List<Classe> getClasses() {
+		return classes;
+	}
+
+	public void setClasses(List<Classe> classes) {
+		this.classes = classes;
 	}
 
 	/*

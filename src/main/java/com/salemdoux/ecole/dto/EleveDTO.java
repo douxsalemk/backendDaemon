@@ -2,7 +2,6 @@ package com.salemdoux.ecole.dto;
 
 import java.io.Serializable;
 
-import com.salemdoux.ecole.domain.Ecole;
 import com.salemdoux.ecole.domain.Eleve;
 import com.salemdoux.ecole.domain.Matricule;
 
@@ -18,7 +17,7 @@ public class EleveDTO implements Serializable{
 	private String postNom;
 	private String preNom;
 	
-	private Ecole ecole;
+	private Integer ecole;
 
 	private Matricule matricule;
 	
@@ -31,7 +30,7 @@ public class EleveDTO implements Serializable{
 		nom = obj.getNom();
 		postNom = obj.getPostNom();
 		preNom = obj.getPreNom();
-		ecole = obj.getEcole();
+		ecole = obj.getEcole().getId();
 		matricule = obj.getMatricule();
 	}
 
@@ -43,11 +42,11 @@ public class EleveDTO implements Serializable{
 		this.id = id;
 	}
 
-	public Ecole getEcole() {
+	public Integer getEcole() {
 		return ecole;
 	}
 
-	public void setEcole(Ecole ecole) {
+	public void setEcole(Integer ecole) {
 		this.ecole = ecole;
 	}
 

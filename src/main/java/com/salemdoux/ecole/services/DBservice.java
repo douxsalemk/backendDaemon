@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.salemdoux.ecole.domain.Actif;
 import com.salemdoux.ecole.domain.Admistration;
 import com.salemdoux.ecole.domain.Adresse;
+import com.salemdoux.ecole.domain.AnneScolaire;
+import com.salemdoux.ecole.domain.Classe;
 import com.salemdoux.ecole.domain.Contact;
 import com.salemdoux.ecole.domain.Ecole;
 import com.salemdoux.ecole.domain.Eleve;
@@ -20,6 +22,8 @@ import com.salemdoux.ecole.domain.enums.Sexe;
 import com.salemdoux.ecole.repositories.ActifRepository;
 import com.salemdoux.ecole.repositories.AdmistrationRepository;
 import com.salemdoux.ecole.repositories.AdresseRepository;
+import com.salemdoux.ecole.repositories.AnneScolaireRepository;
+import com.salemdoux.ecole.repositories.ClasseRepository;
 import com.salemdoux.ecole.repositories.ContactRepository;
 import com.salemdoux.ecole.repositories.EcoleRepository;
 import com.salemdoux.ecole.repositories.EleveRepository;
@@ -65,6 +69,13 @@ public class DBservice {
 	@Autowired
 	private MatriculeRepository matriculeRepository;
 
+	@Autowired
+	private AnneScolaireRepository anneScolaireRepository;
+
+	@Autowired
+	private ClasseRepository classeRepository;
+
+	
 	
 	public boolean instantiateTestDatabase() throws ParseException {
 
@@ -235,12 +246,32 @@ public class DBservice {
 		// e1.setEmployers(Arrays.asList(em1, em2));
 		// e1.setContacts(Arrays.asList(c1, c2));
 
+
+		AnneScolaire an1 = new AnneScolaire(null, "2020-2021", sdf.parse("15/03/2020"), sdf.parse("15/04/2021"));
+		AnneScolaire an2 = new AnneScolaire(null, "2021-2022", sdf.parse("15/03/2021"), sdf.parse("15/04/2022"));
+
+		anneScolaireRepository.saveAll(Arrays.asList(an1, an2));
+		
+//		public Classe(Integer id, String descricao, AnneScolaire anneScolaire) 
+		
+		Classe cl1 = new Classe(null, "1ere A", an1, e1);
+		Classe cl2 = new Classe(null, "1ere A", an2, e1);
+		Classe cl3 = new Classe(null, "2ere A", an1, e1);
+		Classe cl4 = new Classe(null, "2ere A", an2, e1);
+		Classe cl5 = new Classe(null, "3ere A", an1, e1);
+		Classe cl6 = new Classe(null, "3ere A", an2, e1);
+		Classe cl7 = new Classe(null, "4ere A", an1, e1);
+		Classe cl8 = new Classe(null, "4ere A", an2, e1);
+		Classe cl9 = new Classe(null, "5ere A", an1, e1);
+		Classe cl10 = new Classe(null, "5ere A", an2, e1);
+		
 		ecoleRepository.saveAll(Arrays.asList(e1));
 		admistrationRepository.saveAll(Arrays.asList(adm1, adm2));
 		eleveRepository.saveAll(Arrays.asList(el1, el2, el3, el4, el5, el6));
 		fonctionRepository.saveAll(Arrays.asList(f1, f2));
 		employeRepository.saveAll(Arrays.asList(em1, em2));
-
+        classeRepository.saveAll(Arrays.asList(cl1, cl2, cl3, cl4, cl5, cl6, cl7, cl8, cl9, cl10));
+        
 		return true;
 	}
 }

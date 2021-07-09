@@ -21,7 +21,6 @@ import com.salemdoux.ecole.dto.ObjectNewDTO;
 import com.salemdoux.ecole.repositories.ActifRepository;
 import com.salemdoux.ecole.repositories.AdresseRepository;
 import com.salemdoux.ecole.repositories.ContactRepository;
-import com.salemdoux.ecole.repositories.EcoleRepository;
 import com.salemdoux.ecole.repositories.EleveRepository;
 import com.salemdoux.ecole.repositories.MatriculeRepository;
 import com.salemdoux.ecole.services.exceptions.DataIntegrityException;
@@ -32,9 +31,9 @@ public class EleveService {
 
 	@Autowired
 	private EleveRepository repo;
-
-	@Autowired
-	private EcoleRepository ecoleRepository;
+//
+//	@Autowired
+//	private EcoleRepository ecoleRepository;
 
 	@Autowired
 	private MatriculeRepository matriculeRepository;
@@ -51,6 +50,9 @@ public class EleveService {
 	@Autowired
 	private EmailService emailService;
 	
+	@Autowired
+	private EcoleService servE;
+	
 	
 	public Eleve find(Integer id) {
 		Optional<Eleve> obj = repo.findById(id);
@@ -60,13 +62,15 @@ public class EleveService {
 	}
 
 	@Transactional
-	public Eleve insert(ObjectNewDTO objDto) {
+	public Eleve insert(ObjectNewDTO objDto) throws javassist.tools.rmi.ObjectNotFoundException {
+		
+		Ecole ec = servE.find(objDto.getEcole());
 
 		Adresse a = new Adresse(null, objDto.getProvince(), objDto.getVille(), objDto.getComune(), objDto.getQuartier(),
 				objDto.getAvenue(), objDto.getReference());
 		Contact c = new Contact(null, objDto.getEmail(), objDto.getTelefone());
 		Actif ac = new Actif(null, objDto.getActif());
-		Ecole ec = new Ecole(null, objDto.getEcole());
+//		Ecole ec = new Ecole(null, objDto.getEcole());
 		Matricule m = new Matricule(null, objDto.getNumero(), ac);
 
 		Eleve e = new Eleve(null, objDto.getNom(), objDto.getPostNom(), objDto.getPreNom(), objDto.getDateDeNaissance(),
@@ -76,7 +80,7 @@ public class EleveService {
 		matriculeRepository.save(m);
 		adresseRepository.save(a);
 		contactRepository.save(c);
-		ecoleRepository.save(ec);
+//		ecoleRepository.save(ec);
 		repo.save(e);
 		emailService.sendOrderConfirmationEmail(e);
 		return e;
